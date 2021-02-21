@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidad.Negocio;
+using Negocio.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,16 @@ namespace TF_Mendez_Reclutamiento
         public frmLogin()
         {
             InitializeComponent();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = new Usuario();
+            usuario.User = txtUser.Text;
+            usuario.Password = txtPassword.Text;
+
+            if (LoginHelper.Login(usuario))
+                this.Close();
         }
     }
 }

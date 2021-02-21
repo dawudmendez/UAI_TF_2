@@ -49,29 +49,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABM\frmDireccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\frmDireccion.Designer.cs">
+      <DependentUpon>frmDireccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAyuda.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAyuda.Designer.cs">
       <DependentUpon>frmAyuda.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCandidatos.cs">
+    <Compile Include="ABM\frmCandidatos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCandidatos.Designer.cs">
+    <Compile Include="ABM\frmCandidatos.Designer.cs">
       <DependentUpon>frmCandidatos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEntrevistas.cs">
+    <Compile Include="ABM\frmEntrevistas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEntrevistas.Designer.cs">
+    <Compile Include="ABM\frmEntrevistas.Designer.cs">
       <DependentUpon>frmEntrevistas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPosiciones.cs">
+    <Compile Include="ABM\frmOficinas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPosiciones.Designer.cs">
+    <Compile Include="ABM\frmOficinas.Designer.cs">
+      <DependentUpon>frmOficinas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\frmPosiciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\frmPosiciones.Designer.cs">
       <DependentUpon>frmPosiciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\frmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\frmUsuarios.Designer.cs">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -79,40 +97,40 @@
     <Compile Include="frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCandidato.cs">
+    <Compile Include="ABM\frmCandidato.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCandidato.Designer.cs">
+    <Compile Include="ABM\frmCandidato.Designer.cs">
       <DependentUpon>frmCandidato.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConfiguracion.cs">
+    <Compile Include="ABM\frmConfiguracion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConfiguracion.Designer.cs">
+    <Compile Include="ABM\frmConfiguracion.Designer.cs">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEducacion.cs">
+    <Compile Include="ABM\frmEducacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEducacion.Designer.cs">
+    <Compile Include="ABM\frmEducacion.Designer.cs">
       <DependentUpon>frmEducacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEntrevista.cs">
+    <Compile Include="ABM\frmEntrevista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEntrevista.Designer.cs">
+    <Compile Include="ABM\frmEntrevista.Designer.cs">
       <DependentUpon>frmEntrevista.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEquipo.cs">
+    <Compile Include="ABM\frmEquipo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEquipo.Designer.cs">
+    <Compile Include="ABM\frmEquipo.Designer.cs">
       <DependentUpon>frmEquipo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmExperiencia.cs">
+    <Compile Include="ABM\frmExperiencia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExperiencia.Designer.cs">
+    <Compile Include="ABM\frmExperiencia.Designer.cs">
       <DependentUpon>frmExperiencia.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
@@ -121,102 +139,135 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOficina.cs">
+    <Compile Include="ABM\frmOficina.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOficina.Designer.cs">
+    <Compile Include="ABM\frmOficina.Designer.cs">
       <DependentUpon>frmOficina.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPerfiles.cs">
+    <Compile Include="ABM\frmDataGrid.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPerfiles.Designer.cs">
-      <DependentUpon>frmPerfiles.cs</DependentUpon>
+    <Compile Include="ABM\frmDataGrid.Designer.cs">
+      <DependentUpon>frmDataGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPosicion.cs">
+    <Compile Include="ABM\frmPosicion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPosicion.Designer.cs">
+    <Compile Include="ABM\frmPosicion.Designer.cs">
       <DependentUpon>frmPosicion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmProcesoSeleccion.cs">
+    <Compile Include="ABM\frmProcesoSeleccion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmProcesoSeleccion.Designer.cs">
+    <Compile Include="ABM\frmProcesoSeleccion.Designer.cs">
       <DependentUpon>frmProcesoSeleccion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTecnologia.cs">
+    <Compile Include="Reportes\frmReporteCandidatos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTecnologia.Designer.cs">
+    <Compile Include="Reportes\frmReporteCandidatos.Designer.cs">
+      <DependentUpon>frmReporteCandidatos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frmReportePosiciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frmReportePosiciones.Designer.cs">
+      <DependentUpon>frmReportePosiciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frmReporteProcesosSeleccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frmReporteProcesosSeleccion.Designer.cs">
+      <DependentUpon>frmReporteProcesosSeleccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\frmTecnologia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\frmTecnologia.Designer.cs">
       <DependentUpon>frmTecnologia.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUsuario.cs">
+    <Compile Include="ABM\frmUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUsuario.Designer.cs">
+    <Compile Include="ABM\frmUsuario.Designer.cs">
       <DependentUpon>frmUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPerfil.cs">
+    <Compile Include="ABM\frmPerfil.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPerfil.Designer.cs">
+    <Compile Include="ABM\frmPerfil.Designer.cs">
       <DependentUpon>frmPerfil.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmProcesosSeleccion.cs">
+    <Compile Include="ABM\frmProcesosSeleccion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmProcesosSeleccion.Designer.cs">
+    <Compile Include="ABM\frmProcesosSeleccion.Designer.cs">
       <DependentUpon>frmProcesosSeleccion.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\frmReporteTecnologias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frmReporteTecnologias.Designer.cs">
+      <DependentUpon>frmReporteTecnologias.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ABM\frmConfiguracion.resx">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\frmDireccion.resx">
+      <DependentUpon>frmDireccion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAyuda.resx">
       <DependentUpon>frmAyuda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCandidato.resx">
+    <EmbeddedResource Include="ABM\frmCandidato.resx">
       <DependentUpon>frmCandidato.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCandidatos.resx">
+    <EmbeddedResource Include="ABM\frmCandidatos.resx">
       <DependentUpon>frmCandidatos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEducacion.resx">
+    <EmbeddedResource Include="ABM\frmEducacion.resx">
       <DependentUpon>frmEducacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEquipo.resx">
+    <EmbeddedResource Include="ABM\frmEquipo.resx">
       <DependentUpon>frmEquipo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExperiencia.resx">
+    <EmbeddedResource Include="ABM\frmExperiencia.resx">
       <DependentUpon>frmExperiencia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOficina.resx">
+    <EmbeddedResource Include="ABM\frmOficina.resx">
       <DependentUpon>frmOficina.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPerfiles.resx">
-      <DependentUpon>frmPerfiles.cs</DependentUpon>
+    <EmbeddedResource Include="ABM\frmDataGrid.resx">
+      <DependentUpon>frmDataGrid.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPosicion.resx">
+    <EmbeddedResource Include="ABM\frmPosicion.resx">
       <DependentUpon>frmPosicion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPosiciones.resx">
+    <EmbeddedResource Include="ABM\frmPosiciones.resx">
       <DependentUpon>frmPosiciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmProcesoSeleccion.resx">
+    <EmbeddedResource Include="ABM\frmProcesoSeleccion.resx">
       <DependentUpon>frmProcesoSeleccion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmProcesosSeleccion.resx">
+    <EmbeddedResource Include="ABM\frmProcesosSeleccion.resx">
       <DependentUpon>frmProcesosSeleccion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTecnologia.resx">
+    <EmbeddedResource Include="ABM\frmTecnologia.resx">
       <DependentUpon>frmTecnologia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUsuario.resx">
+    <EmbeddedResource Include="ABM\frmUsuario.resx">
       <DependentUpon>frmUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPerfil.resx">
+    <EmbeddedResource Include="ABM\frmPerfil.resx">
       <DependentUpon>frmPerfil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -251,5 +302,6 @@
       <Name>Negocio</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -61,6 +61,7 @@ namespace TF_Mendez_Reclutamiento
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblPath = new System.Windows.Forms.Label();
             this.panelSideMenu.SuspendLayout();
             this.panelAdministracion.SuspendLayout();
             this.panelReportes.SuspendLayout();
@@ -122,7 +123,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnMenuLogout.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnMenuLogout.Size = new System.Drawing.Size(213, 45);
             this.btnMenuLogout.TabIndex = 10;
-            this.btnMenuLogout.Text = "Cerrar Sesión";
+            this.btnMenuLogout.Text = "Iniciar Sesión";
             this.btnMenuLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuLogout.UseVisualStyleBackColor = true;
             this.btnMenuLogout.Click += new System.EventHandler(this.btnMenuLogout_Click);
@@ -154,6 +155,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnAdminEquipo.Text = "Equipos";
             this.btnAdminEquipo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdminEquipo.UseVisualStyleBackColor = true;
+            this.btnAdminEquipo.Click += new System.EventHandler(this.btnAdminEquipo_Click);
             // 
             // btnAdminUsuario
             // 
@@ -169,6 +171,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnAdminUsuario.Text = "Usuarios";
             this.btnAdminUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdminUsuario.UseVisualStyleBackColor = true;
+            this.btnAdminUsuario.Click += new System.EventHandler(this.btnAdminUsuario_Click);
             // 
             // btnAdminOficina
             // 
@@ -184,6 +187,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnAdminOficina.Text = "Oficinas";
             this.btnAdminOficina.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdminOficina.UseVisualStyleBackColor = true;
+            this.btnAdminOficina.Click += new System.EventHandler(this.btnAdminOficina_Click);
             // 
             // btnAdminConfiguracion
             // 
@@ -199,6 +203,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnAdminConfiguracion.Text = "Configuración";
             this.btnAdminConfiguracion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdminConfiguracion.UseVisualStyleBackColor = true;
+            this.btnAdminConfiguracion.Click += new System.EventHandler(this.btnAdminConfiguracion_Click);
             // 
             // btnMenuAdministracion
             // 
@@ -243,6 +248,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnRepTecnologia.Text = "Tecnologías";
             this.btnRepTecnologia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepTecnologia.UseVisualStyleBackColor = true;
+            this.btnRepTecnologia.Click += new System.EventHandler(this.btnRepTecnologia_Click);
             // 
             // btnRepCandidato
             // 
@@ -258,6 +264,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnRepCandidato.Text = "Candidatos";
             this.btnRepCandidato.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepCandidato.UseVisualStyleBackColor = true;
+            this.btnRepCandidato.Click += new System.EventHandler(this.btnRepCandidato_Click);
             // 
             // btnRepPosicion
             // 
@@ -273,6 +280,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnRepPosicion.Text = "Posiciones";
             this.btnRepPosicion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepPosicion.UseVisualStyleBackColor = true;
+            this.btnRepPosicion.Click += new System.EventHandler(this.btnRepPosicion_Click);
             // 
             // btnRepProceso
             // 
@@ -288,6 +296,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnRepProceso.Text = "Procesos de selección";
             this.btnRepProceso.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepProceso.UseVisualStyleBackColor = true;
+            this.btnRepProceso.Click += new System.EventHandler(this.btnRepProceso_Click);
             // 
             // btnMenuReportes
             // 
@@ -346,6 +355,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnProSeleccion.Text = "Procesos de selección";
             this.btnProSeleccion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProSeleccion.UseVisualStyleBackColor = true;
+            this.btnProSeleccion.Click += new System.EventHandler(this.btnProSeleccion_Click);
             // 
             // btnMenuSeleccion
             // 
@@ -461,6 +471,7 @@ namespace TF_Mendez_Reclutamiento
             // panelNavegacion
             // 
             this.panelNavegacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.panelNavegacion.Controls.Add(this.lblPath);
             this.panelNavegacion.Controls.Add(this.btnCerrar);
             this.panelNavegacion.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelNavegacion.Location = new System.Drawing.Point(230, 0);
@@ -516,6 +527,15 @@ namespace TF_Mendez_Reclutamiento
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // lblPath
+            // 
+            this.lblPath.AutoSize = true;
+            this.lblPath.ForeColor = System.Drawing.Color.LightGray;
+            this.lblPath.Location = new System.Drawing.Point(7, 13);
+            this.lblPath.Name = "lblPath";
+            this.lblPath.Size = new System.Drawing.Size(0, 16);
+            this.lblPath.TabIndex = 3;
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -540,6 +560,7 @@ namespace TF_Mendez_Reclutamiento
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelNavegacion.ResumeLayout(false);
+            this.panelNavegacion.PerformLayout();
             this.panelChildForm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -579,5 +600,6 @@ namespace TF_Mendez_Reclutamiento
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Label lblPath;
     }
 }

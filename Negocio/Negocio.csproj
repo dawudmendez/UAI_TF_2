@@ -46,10 +46,11 @@
     <Compile Include="ABM\TecnologiaNegocio.cs" />
     <Compile Include="ABM\UsuarioNegocio.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Analytics\" />
+    <Folder Include="Reportes\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">

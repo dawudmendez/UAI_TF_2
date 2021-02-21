@@ -16,5 +16,11 @@ namespace TF_Mendez_Reclutamiento
         {
             InitializeComponent();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel1.LinkVisited = true;
+            System.Diagnostics.Process.Start("https://github.com/dawudmendez/UAI_TF_2");
+        }
     }
 }
