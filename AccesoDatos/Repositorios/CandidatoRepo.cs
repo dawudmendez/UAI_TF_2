@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
 {
-    class CandidatoRepo : Repositorio<Candidato>
+    public class CandidatoRepo : Repositorio<Candidato>
     {
         ContactoRepo ContactoRepo = new ContactoRepo();
         DireccionRepo DireccionRepo = new DireccionRepo();

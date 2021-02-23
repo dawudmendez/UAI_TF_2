@@ -49,12 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABM\frmDireccion.cs">
+    <Compile Include="ABM\frmCambiarContrasena.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM\frmDireccion.Designer.cs">
-      <DependentUpon>frmDireccion.cs</DependentUpon>
+    <Compile Include="ABM\frmCambiarContrasena.Designer.cs">
+      <DependentUpon>frmCambiarContrasena.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM\frmEquipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\frmEquipos.Designer.cs">
+      <DependentUpon>frmEquipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM\frmPerfiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\frmPerfiles.Designer.cs">
+      <DependentUpon>frmPerfiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\EFormAccion.cs" />
     <Compile Include="frmAyuda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,17 +104,17 @@
     <Compile Include="ABM\frmUsuarios.Designer.cs">
       <DependentUpon>frmUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLogout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogout.Designer.cs">
+      <DependentUpon>frmLogout.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABM\frmCandidato.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmCandidato.Designer.cs">
-      <DependentUpon>frmCandidato.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM\frmConfiguracion.cs">
       <SubType>Form</SubType>
@@ -109,60 +122,19 @@
     <Compile Include="ABM\frmConfiguracion.Designer.cs">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM\frmEducacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmEducacion.Designer.cs">
-      <DependentUpon>frmEducacion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABM\frmEntrevista.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmEntrevista.Designer.cs">
-      <DependentUpon>frmEntrevista.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABM\frmEquipo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmEquipo.Designer.cs">
-      <DependentUpon>frmEquipo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABM\frmExperiencia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmExperiencia.Designer.cs">
-      <DependentUpon>frmExperiencia.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM\frmOficina.cs">
+    <Compile Include="ABM\frmProcesosSeleccion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM\frmOficina.Designer.cs">
-      <DependentUpon>frmOficina.cs</DependentUpon>
+    <Compile Include="ABM\frmProcesosSeleccion.Designer.cs">
+      <DependentUpon>frmProcesosSeleccion.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM\frmDataGrid.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmDataGrid.Designer.cs">
-      <DependentUpon>frmDataGrid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABM\frmPosicion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmPosicion.Designer.cs">
-      <DependentUpon>frmPosicion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABM\frmProcesoSeleccion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmProcesoSeleccion.Designer.cs">
-      <DependentUpon>frmProcesoSeleccion.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Helpers\FormHelper.cs" />
     <Compile Include="Reportes\frmReporteCandidatos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,30 +153,6 @@
     <Compile Include="Reportes\frmReporteProcesosSeleccion.Designer.cs">
       <DependentUpon>frmReporteProcesosSeleccion.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM\frmTecnologia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmTecnologia.Designer.cs">
-      <DependentUpon>frmTecnologia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABM\frmUsuario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmUsuario.Designer.cs">
-      <DependentUpon>frmUsuario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABM\frmPerfil.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmPerfil.Designer.cs">
-      <DependentUpon>frmPerfil.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABM\frmProcesosSeleccion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM\frmProcesosSeleccion.Designer.cs">
-      <DependentUpon>frmProcesosSeleccion.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reportes\frmReporteTecnologias.cs">
@@ -213,38 +161,29 @@
     <Compile Include="Reportes\frmReporteTecnologias.Designer.cs">
       <DependentUpon>frmReporteTecnologias.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ABM\frmCambiarContrasena.resx">
+      <DependentUpon>frmCambiarContrasena.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM\frmConfiguracion.resx">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmDireccion.resx">
-      <DependentUpon>frmDireccion.cs</DependentUpon>
+    <EmbeddedResource Include="ABM\frmEquipos.resx">
+      <DependentUpon>frmEquipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\frmOficinas.resx">
+      <DependentUpon>frmOficinas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\frmPerfiles.resx">
+      <DependentUpon>frmPerfiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\frmUsuarios.resx">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAyuda.resx">
       <DependentUpon>frmAyuda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmCandidato.resx">
-      <DependentUpon>frmCandidato.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ABM\frmCandidatos.resx">
       <DependentUpon>frmCandidatos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmEducacion.resx">
-      <DependentUpon>frmEducacion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmEquipo.resx">
-      <DependentUpon>frmEquipo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmExperiencia.resx">
-      <DependentUpon>frmExperiencia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmOficina.resx">
-      <DependentUpon>frmOficina.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmDataGrid.resx">
-      <DependentUpon>frmDataGrid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmPosicion.resx">
-      <DependentUpon>frmPosicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM\frmPosiciones.resx">
       <DependentUpon>frmPosiciones.cs</DependentUpon>
@@ -252,23 +191,14 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLogout.resx">
+      <DependentUpon>frmLogout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmProcesoSeleccion.resx">
-      <DependentUpon>frmProcesoSeleccion.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ABM\frmProcesosSeleccion.resx">
       <DependentUpon>frmProcesosSeleccion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmTecnologia.resx">
-      <DependentUpon>frmTecnologia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmUsuario.resx">
-      <DependentUpon>frmUsuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM\frmPerfil.resx">
-      <DependentUpon>frmPerfil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

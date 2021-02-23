@@ -38,11 +38,6 @@ namespace AccesoDatos.Repositorios
             switch (Accion)
             {
                 case EAccion.Actualizar:
-                    Parametros.Add(Codigo);
-                    Parametros.Add(Nombre);
-                    Parametros.Add(Tipo);
-                    break;
-
                 case EAccion.Insertar:
                     Parametros.Add(Codigo);
                     Parametros.Add(Nombre);

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace TF_Mendez_Reclutamiento.ABM
 {
-    public partial class frmCandidato : Form
+    public partial class frmCambiarContrasena : Form
     {
-        public frmCandidato()
+        public frmCambiarContrasena()
         {
             InitializeComponent();
+        }
+
+        private void btnCambiar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

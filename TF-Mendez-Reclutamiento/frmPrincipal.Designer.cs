@@ -57,11 +57,13 @@ namespace TF_Mendez_Reclutamiento
             this.panelLogo = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelNavegacion = new System.Windows.Forms.Panel();
+            this.lblPath = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblUsuario = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblPath = new System.Windows.Forms.Label();
+            this.btnCambiarContrasena = new System.Windows.Forms.Button();
             this.panelSideMenu.SuspendLayout();
             this.panelAdministracion.SuspendLayout();
             this.panelReportes.SuspendLayout();
@@ -71,6 +73,7 @@ namespace TF_Mendez_Reclutamiento
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelNavegacion.SuspendLayout();
             this.panelChildForm.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,6 +81,7 @@ namespace TF_Mendez_Reclutamiento
             // 
             this.panelSideMenu.AutoScroll = true;
             this.panelSideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.panelSideMenu.Controls.Add(this.btnCambiarContrasena);
             this.panelSideMenu.Controls.Add(this.btnMenuAyuda);
             this.panelSideMenu.Controls.Add(this.btnMenuLogout);
             this.panelSideMenu.Controls.Add(this.panelAdministracion);
@@ -118,7 +122,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnMenuLogout.FlatAppearance.BorderSize = 0;
             this.btnMenuLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuLogout.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnMenuLogout.Location = new System.Drawing.Point(0, 877);
+            this.btnMenuLogout.Location = new System.Drawing.Point(0, 922);
             this.btnMenuLogout.Name = "btnMenuLogout";
             this.btnMenuLogout.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnMenuLogout.Size = new System.Drawing.Size(213, 45);
@@ -479,6 +483,15 @@ namespace TF_Mendez_Reclutamiento
             this.panelNavegacion.Size = new System.Drawing.Size(704, 46);
             this.panelNavegacion.TabIndex = 1;
             // 
+            // lblPath
+            // 
+            this.lblPath.AutoSize = true;
+            this.lblPath.ForeColor = System.Drawing.Color.LightGray;
+            this.lblPath.Location = new System.Drawing.Point(7, 13);
+            this.lblPath.Name = "lblPath";
+            this.lblPath.Size = new System.Drawing.Size(0, 16);
+            this.lblPath.TabIndex = 3;
+            // 
             // btnCerrar
             // 
             this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -510,11 +523,22 @@ namespace TF_Mendez_Reclutamiento
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.panel1.Controls.Add(this.lblUsuario);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 469);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(704, 46);
             this.panel1.TabIndex = 1;
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.ForeColor = System.Drawing.Color.LightGray;
+            this.lblUsuario.Location = new System.Drawing.Point(7, 13);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(69, 16);
+            this.lblUsuario.TabIndex = 0;
+            this.lblUsuario.Text = "lblUsuario";
             // 
             // pictureBox1
             // 
@@ -527,14 +551,22 @@ namespace TF_Mendez_Reclutamiento
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // lblPath
+            // btnCambiarContrasena
             // 
-            this.lblPath.AutoSize = true;
-            this.lblPath.ForeColor = System.Drawing.Color.LightGray;
-            this.lblPath.Location = new System.Drawing.Point(7, 13);
-            this.lblPath.Name = "lblPath";
-            this.lblPath.Size = new System.Drawing.Size(0, 16);
-            this.lblPath.TabIndex = 3;
+            this.btnCambiarContrasena.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnCambiarContrasena.FlatAppearance.BorderSize = 0;
+            this.btnCambiarContrasena.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCambiarContrasena.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnCambiarContrasena.Location = new System.Drawing.Point(0, 877);
+            this.btnCambiarContrasena.Name = "btnCambiarContrasena";
+            this.btnCambiarContrasena.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnCambiarContrasena.Size = new System.Drawing.Size(213, 45);
+            this.btnCambiarContrasena.TabIndex = 12;
+            this.btnCambiarContrasena.Text = "Cambiar Contraseña";
+            this.btnCambiarContrasena.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCambiarContrasena.UseVisualStyleBackColor = true;
+            this.btnCambiarContrasena.Visible = false;
+            this.btnCambiarContrasena.Click += new System.EventHandler(this.btnCambiarContrasena_Click);
             // 
             // frmPrincipal
             // 
@@ -552,6 +584,7 @@ namespace TF_Mendez_Reclutamiento
             this.RightToLeftLayout = true;
             this.Text = "Reclut.ar";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.panelSideMenu.ResumeLayout(false);
             this.panelAdministracion.ResumeLayout(false);
             this.panelReportes.ResumeLayout(false);
@@ -562,6 +595,8 @@ namespace TF_Mendez_Reclutamiento
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();
             this.panelChildForm.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -601,5 +636,7 @@ namespace TF_Mendez_Reclutamiento
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Label lblPath;
+        private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.Button btnCambiarContrasena;
     }
 }

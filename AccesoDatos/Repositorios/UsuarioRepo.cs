@@ -16,7 +16,24 @@ namespace AccesoDatos.Repositorios
         protected override string SPActualizar { get; set; } = "sp_usuario_actualizar";
         protected override string SPInsertar { get; set; } = "sp_usuario_insertar";
         protected override string SPEliminar { get; set; } = "sp_usuario_eliminar";
+        private string SPTraerPorPuesto { get; set; } = "sp_usuario_traer_por_puesto";
+        private string SPCambiarPassword { get; set; } = "sp_usuario_cambiar_password";
 
+        public IEnumerable<Usuario> TraerPorPuesto(EPuesto Puesto)
+        {
+            Usuario Entidad = new Usuario();
+            Entidad.Puesto = Puesto;
+
+            DataTable data = this.Contexto.EjecutarQuery(SPTraerPorPuesto, this.PrepararParametros(EAccion.TraerPorPuesto, Entidad));
+
+            foreach (DataRow row in data.Rows)
+            {
+                Usuario entidad = this.MapearDataRow(row);
+
+                yield return entidad;
+            }
+
+        }
 
         protected override SqlParameter[] PrepararParametros(EAccion Accion, Usuario Entidad)
         {
@@ -37,8 +54,7 @@ namespace AccesoDatos.Repositorios
             Legajo.Value = Entidad.Legajo;
             Nombre.Value = Entidad.Nombre;
             Apellido.Value = Entidad.Apellido;
-            Puesto.Value = Entidad.Puesto;
-            User.Value = Entidad.User;
+            Puesto.Value = Entidad.Puesto.ToString();
             Password.Value = Entidad.Password;
 
             List<SqlParameter> Parametros = new List<SqlParameter>();
@@ -51,13 +67,16 @@ namespace AccesoDatos.Repositorios
                     Parametros.Add(Nombre);
                     Parametros.Add(Apellido);
                     Parametros.Add(Puesto);
-                    Parametros.Add(User);
                     Parametros.Add(Password);
                     break;
 
                 case EAccion.Traer:
                 case EAccion.Eliminar:
                     Parametros.Add(Legajo);
+                    break;
+
+                case EAccion.TraerPorPuesto:
+                    Parametros.Add(Puesto);
                     break;
 
                 default:                    
@@ -75,7 +94,6 @@ namespace AccesoDatos.Repositorios
             usu.Nombre = Row["nombre"].ToString();
             usu.Apellido = Row["apellido"].ToString();
             usu.Puesto = (EPuesto)Enum.Parse(typeof(EPuesto), Row["puesto"].ToString(), true);
-            usu.User = Row["user"].ToString();
             usu.Password = Row["password"].ToString();
 
             return usu;

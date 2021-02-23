@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
 {
-    class ExperienciaRepo : Repositorio<Experiencia>
+    public class ExperienciaRepo : Repositorio<Experiencia>
     {
         private CandidatoRepo CandidatoRepo = new CandidatoRepo();
         private TecnologiaRepo TecnologiaRepo = new TecnologiaRepo();
@@ -90,17 +90,8 @@ namespace AccesoDatos.Repositorios
             switch (Accion)
             {
                 case EAccion.Actualizar:
-                    Parametros.Add(Codigo);
-                    Parametros.Add(Puesto);
-                    Parametros.Add(Categoria);
-                    Parametros.Add(Empresa);
-                    Parametros.Add(FechaDesde);
-                    Parametros.Add(FechaHasta);
-                    Parametros.Add(Descripcion);
-                    Parametros.Add(CuilCandidato);
-                    break;
-
                 case EAccion.Insertar:
+                    Parametros.Add(Codigo);
                     Parametros.Add(Puesto);
                     Parametros.Add(Categoria);
                     Parametros.Add(Empresa);

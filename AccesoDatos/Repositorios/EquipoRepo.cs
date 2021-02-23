@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
 {
-    class EquipoRepo : Repositorio<Equipo>
+    public class EquipoRepo : Repositorio<Equipo>
     {
         private UsuarioRepo UsuarioRepo = new UsuarioRepo();
 

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
 {
-    class DireccionRepo : Repositorio<Direccion>
+    public class DireccionRepo : Repositorio<Direccion>
     {
         protected override string SPTraerTodo { get; set; } = "sp_direccion_traer";
         protected override string SPTraerUno { get; set; } = "sp_direccion_traeruno";
@@ -63,20 +63,8 @@ namespace AccesoDatos.Repositorios
             switch (Accion)
             {
                 case EAccion.Actualizar:
-                    Parametros.Add(Codigo);
-                    Parametros.Add(Provincia);
-                    Parametros.Add(Localidad);
-                    Parametros.Add(Ciudad);
-                    Parametros.Add(Barrio);
-                    Parametros.Add(Calle);
-                    Parametros.Add(Numero);
-                    Parametros.Add(CodigoPostal);
-                    Parametros.Add(Torre);
-                    Parametros.Add(Piso);
-                    Parametros.Add(Departamento);
-                    break;
-
                 case EAccion.Insertar:
+                    Parametros.Add(Codigo);
                     Parametros.Add(Provincia);
                     Parametros.Add(Localidad);
                     Parametros.Add(Ciudad);
@@ -106,16 +94,16 @@ namespace AccesoDatos.Repositorios
             Direccion dire = new Direccion();
 
             dire.Codigo = new Guid(Row["codigo"].ToString());
-            dire.Provincia = Row["cuil"].ToString();
-            dire.Localidad = Row["cuil"].ToString();
-            dire.Ciudad = Row["cuil"].ToString();
-            dire.Barrio = Row["cuil"].ToString();
-            dire.Calle = Row["cuil"].ToString();
-            dire.Numero = Convert.ToInt64(Row["cuil"].ToString());
-            dire.CodigoPostal = Row["cuil"].ToString();
-            dire.Torre = Row["cuil"].ToString();
-            dire.Piso = Row["cuil"].ToString();
-            dire.Departamento = Row["cuil"].ToString();
+            dire.Provincia = Row["provincia"].ToString();
+            dire.Localidad = Row["localidad"].ToString();
+            dire.Ciudad = Row["ciudad"].ToString();
+            dire.Barrio = Row["barrio"].ToString();
+            dire.Calle = Row["calle"].ToString();
+            dire.Numero = Convert.ToInt64(Row["numero"].ToString());
+            dire.CodigoPostal = Row["codigopostal"].ToString();
+            dire.Torre = Row["torre"].ToString();
+            dire.Piso = Row["piso"].ToString();
+            dire.Departamento = Row["departamento"].ToString();
 
             return dire;
         }

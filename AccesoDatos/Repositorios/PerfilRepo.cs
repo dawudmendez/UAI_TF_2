@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
 {
-    class PerfilRepo : Repositorio<Perfil>
+    public class PerfilRepo : Repositorio<Perfil>
     {
         private TecnologiaRepo TecnologiaRepo = new TecnologiaRepo();
 
@@ -60,13 +60,8 @@ namespace AccesoDatos.Repositorios
             switch (Accion)
             {
                 case EAccion.Actualizar:
-                    Parametros.Add(Codigo);
-                    Parametros.Add(Nombre);
-                    Parametros.Add(Categoria);
-                    Parametros.Add(AniosExperiencia);
-                    break;
-
                 case EAccion.Insertar:
+                    Parametros.Add(Codigo);
                     Parametros.Add(Nombre);
                     Parametros.Add(Categoria);
                     Parametros.Add(AniosExperiencia);

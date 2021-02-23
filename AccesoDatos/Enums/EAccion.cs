@@ -14,6 +14,7 @@ namespace AccesoDatos.Enums
         Traer,
         TraerPorCandidato,
         TraerPorProceso,
-        TraerTecnologias
+        TraerTecnologias,
+        TraerPorPuesto
     }
 }

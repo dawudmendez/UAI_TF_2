@@ -7,16 +7,16 @@ using Entidad.Negocio;
 
 namespace AccesoDatos.Repositorios
 {
-    class ConfiguracionRepo : Repositorio<Configuracion>
+    public class ConfiguracionRepo : Repositorio<Configuracion>
     {
         private OficinaRepo OficinaRepo = new OficinaRepo();
 
         //Configuración sólo puede traer y actualizar
         protected override string SPTraerTodo { get; set; } = "sp_configuracion_traer";
         protected override string SPActualizar { get; set; } = "sp_configuracion_actualizar";
-        protected override string SPTraerUno { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }        
-        protected override string SPInsertar { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        protected override string SPEliminar { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        protected override string SPTraerUno { get; set; }        
+        protected override string SPInsertar { get; set; }
+        protected override string SPEliminar { get; set; }
 
         protected override SqlParameter[] PrepararParametros(EAccion Accion, Configuracion Entidad)
         {
@@ -30,22 +30,16 @@ namespace AccesoDatos.Repositorios
 
             Cuit.Value = Entidad.Cuit;
             RazonSocial.Value = Entidad.RazonSocial;
-            OficinaPrincipal.Value = Entidad.OficinaPrincipal.Nombre;
+            OficinaPrincipal.Value = Entidad.OficinaPrincipal != null ? Entidad.OficinaPrincipal.Nombre : null;
 
             List<SqlParameter> Parametros = new List<SqlParameter>();
 
             switch (Accion)
             {
                 case EAccion.Actualizar:
-                case EAccion.Insertar:
                     Parametros.Add(Cuit);
                     Parametros.Add(RazonSocial);
                     Parametros.Add(OficinaPrincipal);
-                    break;
-
-                case EAccion.Traer:
-                case EAccion.Eliminar:
-                    Parametros.Add(Cuit);
                     break;
 
                 default:

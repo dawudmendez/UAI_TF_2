@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
 {
-    class EntrevistaRepo : Repositorio<Entrevista>
+    public class EntrevistaRepo : Repositorio<Entrevista>
     {
         private ProcesoSeleccionRepo ProcesoSeleccionRepo = new ProcesoSeleccionRepo();
         private UsuarioRepo UsuarioRepo = new UsuarioRepo();
@@ -77,18 +77,8 @@ namespace AccesoDatos.Repositorios
             switch (Accion)
             {
                 case EAccion.Actualizar:
+                case EAccion.Insertar:
                     Parametros.Add(Codigo);
-                    Parametros.Add(Descripcion);
-                    Parametros.Add(TipoEntrevista);
-                    Parametros.Add(CodigoProcesoSeleccion);
-                    Parametros.Add(LegajoEntrevistador);
-                    Parametros.Add(Orden);
-                    Parametros.Add(Estado);
-                    Parametros.Add(Comentarios);
-                    Parametros.Add(Puntaje);
-                    break;
-
-                case EAccion.Insertar:                    
                     Parametros.Add(Descripcion);
                     Parametros.Add(TipoEntrevista);
                     Parametros.Add(CodigoProcesoSeleccion);

@@ -65,8 +65,6 @@ namespace AccesoDatos.Repositorios
 
                 yield return entidad;
             }
-
-            yield return default;
         }
 
         protected abstract SqlParameter[] PrepararParametros(EAccion Accion, T Entidad);

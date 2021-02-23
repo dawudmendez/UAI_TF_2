@@ -14,7 +14,6 @@ namespace Entidad.Negocio
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public EPuesto Puesto { get; set; }
-        public string User { get; set; }
         public string Password { get; set; }
     }
 }

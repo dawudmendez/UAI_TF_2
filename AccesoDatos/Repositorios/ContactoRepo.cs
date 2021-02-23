@@ -12,7 +12,7 @@ using Entidad.Negocio;
 
 namespace AccesoDatos.Repositorios
 {
-    class ContactoRepo : Repositorio<Contacto>
+    public class ContactoRepo : Repositorio<Contacto>
     {
         protected override string SPTraerTodo { get ; set ; } = "sp_contacto_traer";
         protected override string SPTraerUno { get ; set ; } = "sp_contacto_traeruno";
@@ -35,20 +35,15 @@ namespace AccesoDatos.Repositorios
             Codigo.Value = Entidad.Codigo;
             Email.Value = Entidad.Email;
             Telefono.Value = Entidad.Telefono;
-            SitioWeb.Value = Entidad.SitioWeb;
+            SitioWeb.Value = Entidad.SitioWeb?.ToString();
 
             List<SqlParameter> Parametros = new List<SqlParameter>();
 
             switch (Accion)
             {
                 case EAccion.Actualizar:
-                    Parametros.Add(Codigo);
-                    Parametros.Add(Email);
-                    Parametros.Add(Telefono);
-                    Parametros.Add(SitioWeb);
-                    break;
-
                 case EAccion.Insertar:
+                    Parametros.Add(Codigo);
                     Parametros.Add(Email);
                     Parametros.Add(Telefono);
                     Parametros.Add(SitioWeb);
@@ -72,7 +67,7 @@ namespace AccesoDatos.Repositorios
             cont.Codigo = new Guid(Row["codigo"].ToString());
             cont.Email = Row["email"].ToString();
             cont.Telefono = Row["telefono"].ToString();
-            cont.SitioWeb = new Uri(Row["sitioweb"].ToString());
+            cont.SitioWeb = new Uri(Row["sitioweb"]?.ToString());
 
             return cont;
         }

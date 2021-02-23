@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace AccesoDatos.Repositorios
 {
-    internal class ProcesoSeleccionRepo : Repositorio<ProcesoSeleccion>
+    public class ProcesoSeleccionRepo : Repositorio<ProcesoSeleccion>
     {
         private PosicionRepo PosicionRepo = new PosicionRepo();
         private CandidatoRepo CandidatoRepo = new CandidatoRepo();
@@ -56,17 +56,8 @@ namespace AccesoDatos.Repositorios
             switch (Accion)
             {
                 case EAccion.Actualizar:
-                    Parametros.Add(Codigo);
-                    Parametros.Add(Nombre);
-                    Parametros.Add(Descripcion);
-                    Parametros.Add(IdPosicion);
-                    Parametros.Add(CuilCandidato);
-                    Parametros.Add(LegajoReclutador);
-                    Parametros.Add(Estado);
-                    Parametros.Add(Comentarios);
-                    break;
-
                 case EAccion.Insertar:
+                    Parametros.Add(Codigo);
                     Parametros.Add(Nombre);
                     Parametros.Add(Descripcion);
                     Parametros.Add(IdPosicion);

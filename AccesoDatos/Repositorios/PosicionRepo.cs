@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
 {
-    class PosicionRepo : Repositorio<Posicion>
+    public class PosicionRepo : Repositorio<Posicion>
     {
         private PerfilRepo PerfilRepo = new PerfilRepo();
         private EquipoRepo EquipoRepo = new EquipoRepo();
@@ -56,16 +56,8 @@ namespace AccesoDatos.Repositorios
             switch (Accion)
             {
                 case EAccion.Actualizar:
-                    Parametros.Add(Codigo);
-                    Parametros.Add(Nombre);
-                    Parametros.Add(Descripcion);
-                    Parametros.Add(CodigoPerfil);
-                    Parametros.Add(NombreEquipo);
-                    Parametros.Add(Estado);
-                    Parametros.Add(NombreOficina);
-                    break;
-
                 case EAccion.Insertar:
+                    Parametros.Add(Codigo);
                     Parametros.Add(Nombre);
                     Parametros.Add(Descripcion);
                     Parametros.Add(CodigoPerfil);

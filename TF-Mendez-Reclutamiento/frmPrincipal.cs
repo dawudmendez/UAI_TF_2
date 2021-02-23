@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using TF_Mendez_Reclutamiento.Reportes;
 using TF_Mendez_Reclutamiento.ABM;
 using Entidad.Negocio;
+using Negocio.Helpers;
 
 namespace TF_Mendez_Reclutamiento
 {
@@ -18,6 +19,9 @@ namespace TF_Mendez_Reclutamiento
 
         private Form FormActivo = null;
         private List<string> Path = new List<string>();
+
+        private const string IniciarSesion = "Iniciar Sesión";
+        private const string CerrarSesion = "Cerrar Sesión";
 
         public frmPrincipal()
         {
@@ -39,11 +43,15 @@ namespace TF_Mendez_Reclutamiento
             Form.TopLevel = false;
             Form.FormBorderStyle = FormBorderStyle.None;
             Form.Dock = DockStyle.Fill;
+            
             Form.BackColor = panelChildForm.BackColor;
 
-            foreach (var item in Form.Controls.OfType<Label>())
+            foreach (var panel in Form.Controls.OfType<Panel>())
             {
-                item.ForeColor = Color.LightGray;
+                foreach (var item in panel.Controls.OfType<Label>())
+                {
+                    item.ForeColor = Color.LightGray;
+                }                
             }
         }
 
@@ -73,6 +81,30 @@ namespace TF_Mendez_Reclutamiento
             {
                 Panel.Visible = false;
             }
+        }
+
+        private void LoggedIn()
+        {
+            string texto = UserHelper.UsuarioSistema.Legajo + ": " +
+                " " + UserHelper.UsuarioSistema.Nombre +
+                " " + UserHelper.UsuarioSistema.Apellido +
+                " - " + UserHelper.UsuarioSistema.Puesto;
+
+            lblUsuario.Text = texto;
+            btnMenuLogout.Text = CerrarSesion;
+            btnCambiarContrasena.Visible = true;
+
+            this.CerrarChildActivo();
+        }
+
+        private void LoggedOut()
+        {
+            lblUsuario.Text = "";
+            btnMenuLogout.Text = IniciarSesion;
+
+            btnCambiarContrasena.Visible = false;
+
+            this.CerrarChildActivo();
         }
 
         private void btnMenuPosiciones_Click(object sender, EventArgs e)
@@ -107,8 +139,26 @@ namespace TF_Mendez_Reclutamiento
         {
             this.EsconderSubmenues();
             Path.Clear();
-            Path.Add("Iniciar Sesión");
-            this.AbrirChildForm(new frmLogin());
+
+            if (btnMenuLogout.Text == IniciarSesion)
+            {
+                Path.Add("Iniciar Sesión");
+
+                frmLogin form = new frmLogin();
+                form.LoggedIn += LoggedIn;
+
+                this.AbrirChildForm(form);
+            }
+            else
+            {
+                Path.Add("Cerrar Sesión");
+
+                frmLogout form = new frmLogout();
+                form.LoggedOut += LoggedOut;
+
+                this.AbrirChildForm(form);
+            }
+            
         }
 
         private void btnMenuCandidatos_Click(object sender, EventArgs e)
@@ -119,7 +169,7 @@ namespace TF_Mendez_Reclutamiento
             this.AbrirChildForm(new frmCandidatos());
         }
         
-        private void AbrirChildForm(Form Child)
+        public void AbrirChildForm(Form Child)
         {
             if (FormActivo != null)
                 FormActivo.Close();            
@@ -162,6 +212,8 @@ namespace TF_Mendez_Reclutamiento
             FormActivo = null;
             btnCerrar.Visible = false;
             Path.Clear();
+
+            this.MostrarPath();
         }
 
         private void btnPosPerfiles_Click(object sender, EventArgs e)
@@ -169,7 +221,7 @@ namespace TF_Mendez_Reclutamiento
             Path.Clear();
             Path.Add("Posiciones");
             Path.Add("Perfiles");
-            this.AbrirChildForm(new frmDataGrid());            
+            this.AbrirChildForm(new frmPerfiles());            
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -256,7 +308,7 @@ namespace TF_Mendez_Reclutamiento
             Path.Clear();
             Path.Add("Administración");
             Path.Add("Equipos");
-            this.AbrirChildForm(new frmEquipo());
+            this.AbrirChildForm(new frmEquipos());
         }
 
         private void btnProSeleccion_Click(object sender, EventArgs e)
@@ -265,6 +317,17 @@ namespace TF_Mendez_Reclutamiento
             Path.Add("Selección");
             Path.Add("Procesos de selección");
             this.AbrirChildForm(new frmProcesosSeleccion());
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            lblUsuario.Text = "";
+            btnMenuLogout.Text = IniciarSesion;
+        }
+
+        private void btnCambiarContrasena_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

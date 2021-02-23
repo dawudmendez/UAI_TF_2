@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
 {
-    class EducacionRepo : Repositorio<Educacion>
+    public class EducacionRepo : Repositorio<Educacion>
     {
         private CandidatoRepo CandidatoRepo = new CandidatoRepo();
 
@@ -78,19 +78,8 @@ namespace AccesoDatos.Repositorios
             switch (Accion)
             {
                 case EAccion.Actualizar:
-                    Parametros.Add(Codigo);
-                    Parametros.Add(Institucion);
-                    Parametros.Add(Carrera);
-                    Parametros.Add(TipoCarrera);
-                    Parametros.Add(Duracion);
-                    Parametros.Add(FechaDesde);
-                    Parametros.Add(FechaHasta);
-                    Parametros.Add(RubroCarrera);
-                    Parametros.Add(Estado);
-                    Parametros.Add(CuilCandidato);
-                    break;
-
                 case EAccion.Insertar:
+                    Parametros.Add(Codigo);
                     Parametros.Add(Institucion);
                     Parametros.Add(Carrera);
                     Parametros.Add(TipoCarrera);

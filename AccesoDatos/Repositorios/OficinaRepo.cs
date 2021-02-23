@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
 {
-    class OficinaRepo : Repositorio<Oficina>
+    public class OficinaRepo : Repositorio<Oficina>
     {
         private DireccionRepo DireccionRepo = new DireccionRepo();
         private ContactoRepo ContactoRepo = new ContactoRepo();        
@@ -35,8 +35,8 @@ namespace AccesoDatos.Repositorios
             CodigoContacto.ParameterName = "codigo_contacto";
 
             Nombre.Value = Entidad.Nombre;
-            CodigoDireccion.Value = Entidad.Direccion.Codigo;
-            CodigoContacto.Value = Entidad.Contacto.Codigo;
+            CodigoDireccion.Value = Entidad.Direccion?.Codigo;
+            CodigoContacto.Value = Entidad.Contacto?.Codigo;
 
             List<SqlParameter> Parametros = new List<SqlParameter>();
 
