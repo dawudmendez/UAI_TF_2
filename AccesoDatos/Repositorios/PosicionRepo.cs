@@ -25,7 +25,7 @@ namespace AccesoDatos.Repositorios
         protected override string SPInsertar { get; set; } = "sp_posicion_insertar";
         protected override string SPEliminar { get; set; } = "sp_posicion_eliminar";
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, Posicion Entidad)
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, Posicion Entidad, int Elemento = 0)
         {
             SqlParameter Codigo = new SqlParameter();
             SqlParameter Nombre = new SqlParameter();
@@ -39,17 +39,17 @@ namespace AccesoDatos.Repositorios
             Nombre.ParameterName = "nombre";
             Descripcion.ParameterName = "descripcion";
             CodigoPerfil.ParameterName = "codigo_perfil";
-            NombreEquipo.ParameterName = "equipo";
+            NombreEquipo.ParameterName = "nombre_equipo";
             Estado.ParameterName = "estado";
-            NombreOficina.ParameterName = "oficina";
+            NombreOficina.ParameterName = "nombre_oficina";
 
             Codigo.Value = Entidad.Codigo;
             Nombre.Value = Entidad.Nombre;
             Descripcion.Value = Entidad.Descripcion;
-            CodigoPerfil.Value = Entidad.Perfil.Codigo;
-            NombreEquipo.Value = Entidad.Equipo.Nombre;
+            CodigoPerfil.Value = Entidad.Perfil?.Codigo;
+            NombreEquipo.Value = Entidad.Equipo?.Nombre;
             Estado.Value = Entidad.Estado;
-            NombreOficina.Value = Entidad.Oficina.Nombre;
+            NombreOficina.Value = Entidad.Oficina?.Nombre;
 
             List<SqlParameter> Parametros = new List<SqlParameter>();
 
@@ -82,13 +82,13 @@ namespace AccesoDatos.Repositorios
         {
             Posicion posi = new Posicion();
 
-            posi.Codigo = new Guid(Row["id"].ToString());
+            posi.Codigo = new Guid(Row["codigo"].ToString());
             posi.Nombre = Row["nombre"].ToString();
             posi.Descripcion = Row["descripcion"].ToString();
-            posi.Perfil = this.PerfilRepo.Traer(new Perfil { Codigo = new Guid(Row["id_perfil"].ToString()) });
-            posi.Equipo = this.EquipoRepo.Traer(new Equipo { Nombre = Row["equipo"].ToString() });
+            posi.Perfil = this.PerfilRepo.Traer(new Perfil { Codigo = new Guid(Row["codigo_perfil"].ToString()) });
+            posi.Equipo = this.EquipoRepo.Traer(new Equipo { Nombre = Row["nombre_equipo"].ToString() });
             posi.Estado = (EEstadoPosicion)Enum.Parse(typeof(EEstadoPosicion), Row["estado"].ToString(), true);
-            posi.Oficina = this.OficinaRepo.Traer(new Oficina { Nombre = Row["oficina"].ToString() });
+            posi.Oficina = this.OficinaRepo.Traer(new Oficina { Nombre = Row["nombre_oficina"].ToString() });
 
             return posi;
         }

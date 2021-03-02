@@ -24,7 +24,7 @@ namespace AccesoDatos.Repositorios
             Usuario Entidad = new Usuario();
             Entidad.Puesto = Puesto;
 
-            DataTable data = this.Contexto.EjecutarQuery(SPTraerPorPuesto, this.PrepararParametros(EAccion.TraerPorPuesto, Entidad));
+            DataTable data = this.contexto.EjecutarQuery(SPTraerPorPuesto, this.PrepararParametros(EAccion.TraerPorPuesto, Entidad));
 
             foreach (DataRow row in data.Rows)
             {
@@ -32,10 +32,16 @@ namespace AccesoDatos.Repositorios
 
                 yield return entidad;
             }
-
         }
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, Usuario Entidad)
+        public bool CambiarPassword(Usuario Entidad)
+        {
+            this.contexto.EjecutarNoQuery(SPCambiarPassword, this.PrepararParametros(EAccion.CambiarPassword, Entidad));
+
+            return true;
+        }
+
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, Usuario Entidad, int Elemento = 0)
         {
             SqlParameter Legajo = new SqlParameter();
             SqlParameter Nombre = new SqlParameter();
@@ -67,7 +73,6 @@ namespace AccesoDatos.Repositorios
                     Parametros.Add(Nombre);
                     Parametros.Add(Apellido);
                     Parametros.Add(Puesto);
-                    Parametros.Add(Password);
                     break;
 
                 case EAccion.Traer:
@@ -77,6 +82,11 @@ namespace AccesoDatos.Repositorios
 
                 case EAccion.TraerPorPuesto:
                     Parametros.Add(Puesto);
+                    break;
+
+                case EAccion.CambiarPassword:
+                    Parametros.Add(Legajo);
+                    Parametros.Add(Password);
                     break;
 
                 default:                    

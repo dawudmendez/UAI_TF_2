@@ -47,6 +47,7 @@
     <Compile Include="Helpers\ComparadorHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\IRepositorio.cs" />
+    <Compile Include="Repositorios\AnalyticsRepo.cs" />
     <Compile Include="Repositorios\CandidatoRepo.cs" />
     <Compile Include="Repositorios\ConfiguracionRepo.cs" />
     <Compile Include="Repositorios\ContactoRepo.cs" />

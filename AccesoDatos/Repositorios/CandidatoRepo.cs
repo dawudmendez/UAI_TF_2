@@ -24,7 +24,7 @@ namespace AccesoDatos.Repositorios
         protected override string SPInsertar { get ; set ; } = "sp_candidato_insertar";
         protected override string SPEliminar { get ; set ; } = "sp_candidato_eliminar";
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, Candidato Entidad)
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, Candidato Entidad, int Elemento = 0)
         {
             SqlParameter Cuil = new SqlParameter();
             SqlParameter DNI = new SqlParameter();

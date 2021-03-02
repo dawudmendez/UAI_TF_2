@@ -37,9 +37,6 @@ namespace TF_Mendez_Reclutamiento.ABM
 
         private void CargarDataGrid()
         {
-
-            //dgvOficinas.Rows?.Remove(dgvOficinas.Rows[0]);
-
             dgvEquipos.Rows.Clear();
 
             List<Equipo> equipos = this.equipoNegocio.TraerTodo().ToList();
@@ -82,8 +79,8 @@ namespace TF_Mendez_Reclutamiento.ABM
 
         private void SeleccionarComboBoxes(Equipo equipo)
         {
-            cboManager.SelectedIndex = cboManager.FindStringExact(equipo.Manager.Legajo);
-            cboTeamLeader.SelectedIndex = cboTeamLeader.FindStringExact(equipo.Lider.Legajo);
+            cboManager.SelectedValue = equipo.Manager.Legajo;
+            cboTeamLeader.SelectedValue = equipo.Lider.Legajo;
         }
 
         private void PrepararFaseAgregar()
@@ -92,6 +89,7 @@ namespace TF_Mendez_Reclutamiento.ABM
 
             this.LimpiarTextBoxes(panel1);
             this.HabilitarTextBoxes(true, panel1);
+            this.HabilitarComboBoxes(true, panel1);
 
             btnAgregar.Enabled = false;
             btnEditar.Enabled = false;
@@ -106,6 +104,9 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.accion = EFormAccion.Modificar;
 
             this.HabilitarTextBoxes(true, panel1);
+            this.HabilitarComboBoxes(true, panel1);
+
+            txtNombre.Enabled = false;
 
             btnAgregar.Enabled = false;
             btnEditar.Enabled = false;
@@ -119,6 +120,7 @@ namespace TF_Mendez_Reclutamiento.ABM
         {
             this.LimpiarTextBoxes(panel1);
             this.HabilitarTextBoxes(false, panel1);
+            this.HabilitarComboBoxes(false, panel1);
 
             this.CargarDataGrid();
             this.CargarComboBoxes();
@@ -182,6 +184,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.CargarTextBoxes(equipo);
             this.SeleccionarComboBoxes(equipo);
             btnEditar.Enabled = true;
+            btnEliminar.Enabled = true;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -192,14 +195,14 @@ namespace TF_Mendez_Reclutamiento.ABM
             {
                 MessageBox.Show("Error: " + errores);
                 return;
-            }
+            }   
 
             Equipo equipo = new Equipo();
             equipo.Nombre = txtNombre.Text;
             equipo.Descripcion = txtDescripcion.Text;
 
-            equipo.Manager = new Usuario { Legajo = cboManager.SelectedItem.ToString(), Puesto = Entidad.Enums.EPuesto.Manager };
-            equipo.Lider = new Usuario { Legajo = cboTeamLeader.SelectedItem.ToString(), Puesto = Entidad.Enums.EPuesto.Lider };
+            equipo.Manager = (Usuario)cboManager.SelectedItem;
+            equipo.Lider = (Usuario)cboTeamLeader.SelectedItem;
 
 
             switch (this.accion)
@@ -231,6 +234,27 @@ namespace TF_Mendez_Reclutamiento.ABM
                 default:
                     break;
             }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro de eliminar este equipo?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
+            if (this.equipoNegocio.Eliminar(txtNombre.Text))
+            {
+                MessageBox.Show("Equipo eliminado correctamente");
+                this.PrepararFaseInicial();
+            }
+            else
+            {
+                MessageBox.Show("Hubo un error al eliminar el equipo");
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

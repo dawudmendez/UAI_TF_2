@@ -28,7 +28,7 @@ namespace AccesoDatos.Repositorios
 
         public IEnumerable<Entrevista> TraerPorProceso(ProcesoSeleccion Proceso)
         {
-            DataTable data = this.Contexto.EjecutarQuery(SPTraerPorProceso, this.PrepararParametros(EAccion.TraerPorProceso, new Entrevista { ProcesoSeleccion = Proceso }));
+            DataTable data = this.contexto.EjecutarQuery(SPTraerPorProceso, this.PrepararParametros(EAccion.TraerPorProceso, new Entrevista { ProcesoSeleccion = Proceso }));
 
             foreach (DataRow row in data.Rows)
             {
@@ -40,7 +40,7 @@ namespace AccesoDatos.Repositorios
             yield return default;
         }
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, Entrevista Entidad)
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, Entrevista Entidad, int Elemento = 0)
         {
             SqlParameter Codigo = new SqlParameter();
             SqlParameter Descripcion = new SqlParameter();
@@ -55,7 +55,7 @@ namespace AccesoDatos.Repositorios
             Codigo.ParameterName = "codigo";
             Descripcion.ParameterName = "descripcion";
             TipoEntrevista.ParameterName = "tipoentrevista";
-            CodigoProcesoSeleccion.ParameterName = "id_proceso_seleccion";
+            CodigoProcesoSeleccion.ParameterName = "codigo_procesoseleccion";
             LegajoEntrevistador.ParameterName = "legajo_entrevistador";
             Orden.ParameterName = "orden";
             Estado.ParameterName = "estado";

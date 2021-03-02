@@ -187,6 +187,7 @@ namespace TF_Mendez_Reclutamiento.ABM
 
             this.CargarTextBoxes(oficina);
             btnEditar.Enabled = true;
+            btnEliminar.Enabled = true;
             
         }
 
@@ -269,6 +270,22 @@ namespace TF_Mendez_Reclutamiento.ABM
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.PrepararFaseInicial();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro de eliminar esta oficina?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
+            if (this.oficinaNegocio.Eliminar(txtNombre.Text))
+            {
+                MessageBox.Show("Oficina eliminada correctamente");
+                this.PrepararFaseInicial();
+            }
+            else
+            {
+                MessageBox.Show("Hubo un error al eliminar la oficina");
+            }
         }
     }
 }

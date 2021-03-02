@@ -18,7 +18,7 @@ namespace AccesoDatos.Repositorios
         protected override string SPInsertar { get; set; }
         protected override string SPEliminar { get; set; }
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, Configuracion Entidad)
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, Configuracion Entidad, int Elemento = 0)
         {
             SqlParameter Cuit = new SqlParameter();
             SqlParameter RazonSocial = new SqlParameter();
@@ -26,7 +26,7 @@ namespace AccesoDatos.Repositorios
 
             Cuit.ParameterName = "cuit";
             RazonSocial.ParameterName = "razonsocial";
-            OficinaPrincipal.ParameterName = "oficinaprincipal";
+            OficinaPrincipal.ParameterName = "nombre_oficinaprincipal";
 
             Cuit.Value = Entidad.Cuit;
             RazonSocial.Value = Entidad.RazonSocial;
@@ -57,7 +57,7 @@ namespace AccesoDatos.Repositorios
             conf.RazonSocial = Row["razonsocial"].ToString();
 
             this.OficinaRepo = new OficinaRepo();
-            conf.OficinaPrincipal = this.OficinaRepo.Traer(new Oficina { Nombre = Row["oificinaprincipal"].ToString() });
+            conf.OficinaPrincipal = this.OficinaRepo.Traer(new Oficina { Nombre = Row["nombre_oficinaprincipal"].ToString() });
 
             return conf;
         }

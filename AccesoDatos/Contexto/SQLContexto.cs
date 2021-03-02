@@ -82,7 +82,7 @@ namespace AccesoDatos.Contexto
             }
             finally
             {
-                Desconectar();
+                this.Desconectar();
             }
 
             return DataTable;
@@ -96,7 +96,7 @@ namespace AccesoDatos.Contexto
 
             try
             {
-                Conectar();
+                this.Conectar();
                 Comando.Connection = Conexion;
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.CommandText = StoredProcedure;
@@ -140,7 +140,7 @@ namespace AccesoDatos.Contexto
             }
             finally
             {
-                Desconectar();
+                this.Desconectar();
             }
         }
     }

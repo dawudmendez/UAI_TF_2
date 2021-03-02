@@ -30,7 +30,13 @@ namespace TF_Mendez_Reclutamiento.ABM
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dgvPosiciones = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cboOficina = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboEquipo = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -38,18 +44,12 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnEditar = new System.Windows.Forms.Button();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.cboCategoria = new System.Windows.Forms.ComboBox();
+            this.cboPerfil = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.dgvPosiciones = new System.Windows.Forms.DataGridView();
+            this.txtEstado = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPosiciones)).BeginInit();
             this.SuspendLayout();
@@ -57,13 +57,13 @@ namespace TF_Mendez_Reclutamiento.ABM
             // panel1
             // 
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.comboBox3);
+            this.panel1.Controls.Add(this.txtEstado);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.cboOficina);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.cboEquipo);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtDescripcion);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.btnCancelar);
             this.panel1.Controls.Add(this.btnGuardar);
@@ -72,7 +72,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.panel1.Controls.Add(this.btnEditar);
             this.panel1.Controls.Add(this.txtCodigo);
             this.panel1.Controls.Add(this.txtNombre);
-            this.panel1.Controls.Add(this.cboCategoria);
+            this.panel1.Controls.Add(this.cboPerfil);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -83,14 +83,71 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.panel1.Size = new System.Drawing.Size(702, 581);
             this.panel1.TabIndex = 0;
             // 
-            // dgvPosiciones
+            // label7
             // 
-            this.dgvPosiciones.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dgvPosiciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPosiciones.Location = new System.Drawing.Point(13, 13);
-            this.dgvPosiciones.Name = "dgvPosiciones";
-            this.dgvPosiciones.Size = new System.Drawing.Size(663, 226);
-            this.dgvPosiciones.TabIndex = 0;
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(362, 299);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 13);
+            this.label7.TabIndex = 41;
+            this.label7.Text = "Estado";
+            // 
+            // cboOficina
+            // 
+            this.cboOficina.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cboOficina.FormattingEnabled = true;
+            this.cboOficina.Location = new System.Drawing.Point(476, 272);
+            this.cboOficina.Name = "cboOficina";
+            this.cboOficina.Size = new System.Drawing.Size(200, 21);
+            this.cboOficina.TabIndex = 40;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(361, 272);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 13);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "Oficina";
+            // 
+            // cboEquipo
+            // 
+            this.cboEquipo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cboEquipo.FormattingEnabled = true;
+            this.cboEquipo.Location = new System.Drawing.Point(476, 245);
+            this.cboEquipo.Name = "cboEquipo";
+            this.cboEquipo.Size = new System.Drawing.Size(200, 21);
+            this.cboEquipo.TabIndex = 38;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(362, 245);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 13);
+            this.label5.TabIndex = 37;
+            this.label5.Text = "Equipo";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDescripcion.Location = new System.Drawing.Point(126, 297);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(200, 20);
+            this.txtDescripcion.TabIndex = 36;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 297);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "Descripcion";
             // 
             // btnCancelar
             // 
@@ -101,6 +158,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnCancelar.TabIndex = 34;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
@@ -111,6 +169,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnGuardar.TabIndex = 33;
             this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnAgregar
             // 
@@ -121,6 +180,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnAgregar.TabIndex = 32;
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnEliminar
             // 
@@ -131,6 +191,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnEliminar.TabIndex = 31;
             this.btnEliminar.Text = "E&liminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnEditar
             // 
@@ -141,6 +202,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnEditar.TabIndex = 30;
             this.btnEditar.Text = "&Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // txtCodigo
             // 
@@ -158,14 +220,14 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.txtNombre.Size = new System.Drawing.Size(200, 20);
             this.txtNombre.TabIndex = 28;
             // 
-            // cboCategoria
+            // cboPerfil
             // 
-            this.cboCategoria.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cboCategoria.FormattingEnabled = true;
-            this.cboCategoria.Location = new System.Drawing.Point(126, 323);
-            this.cboCategoria.Name = "cboCategoria";
-            this.cboCategoria.Size = new System.Drawing.Size(200, 21);
-            this.cboCategoria.TabIndex = 27;
+            this.cboPerfil.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cboPerfil.FormattingEnabled = true;
+            this.cboPerfil.Location = new System.Drawing.Point(126, 323);
+            this.cboPerfil.Name = "cboPerfil";
+            this.cboPerfil.Size = new System.Drawing.Size(200, 21);
+            this.cboPerfil.TabIndex = 27;
             // 
             // label3
             // 
@@ -197,80 +259,24 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.label1.TabIndex = 24;
             this.label1.Text = "Código";
             // 
-            // textBox1
+            // dgvPosiciones
             // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.textBox1.Location = new System.Drawing.Point(126, 297);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 20);
-            this.textBox1.TabIndex = 36;
+            this.dgvPosiciones.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dgvPosiciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPosiciones.Location = new System.Drawing.Point(13, 13);
+            this.dgvPosiciones.Name = "dgvPosiciones";
+            this.dgvPosiciones.Size = new System.Drawing.Size(663, 226);
+            this.dgvPosiciones.TabIndex = 0;
+            this.dgvPosiciones.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPosiciones_CellMouseDoubleClick);
             // 
-            // label4
+            // txtEstado
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 297);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
-            this.label4.TabIndex = 35;
-            this.label4.Text = "Descripcion";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(476, 245);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 21);
-            this.comboBox1.TabIndex = 38;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(362, 245);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 37;
-            this.label5.Text = "Equipo";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(476, 272);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(200, 21);
-            this.comboBox2.TabIndex = 40;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(361, 272);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 13);
-            this.label6.TabIndex = 39;
-            this.label6.Text = "Oficina";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(362, 299);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(40, 13);
-            this.label7.TabIndex = 41;
-            this.label7.Text = "Estado";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(476, 299);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(200, 21);
-            this.comboBox3.TabIndex = 42;
+            this.txtEstado.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtEstado.Enabled = false;
+            this.txtEstado.Location = new System.Drawing.Point(476, 299);
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.Size = new System.Drawing.Size(200, 20);
+            this.txtEstado.TabIndex = 42;
             // 
             // frmPosiciones
             // 
@@ -280,6 +286,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.Controls.Add(this.panel1);
             this.Name = "frmPosiciones";
             this.Text = "frmPosiciones";
+            this.Load += new System.EventHandler(this.frmPosiciones_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPosiciones)).EndInit();
@@ -291,13 +298,12 @@ namespace TF_Mendez_Reclutamiento.ABM
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgvPosiciones;
-        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboOficina;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboEquipo;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
@@ -306,9 +312,10 @@ namespace TF_Mendez_Reclutamiento.ABM
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.ComboBox cboCategoria;
+        private System.Windows.Forms.ComboBox cboPerfil;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtEstado;
     }
 }

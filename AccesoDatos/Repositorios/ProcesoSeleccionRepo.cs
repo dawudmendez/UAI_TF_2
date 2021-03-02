@@ -22,7 +22,7 @@ namespace AccesoDatos.Repositorios
         protected override string SPInsertar { get; set; } = "sp_proceso_insertar";
         protected override string SPEliminar { get; set; } = "sp_proceso_eliminar";
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, ProcesoSeleccion Entidad)
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, ProcesoSeleccion Entidad, int Elemento = 0)
         {
             SqlParameter Codigo = new SqlParameter();
             SqlParameter Nombre = new SqlParameter();
@@ -36,7 +36,7 @@ namespace AccesoDatos.Repositorios
             Codigo.ParameterName = "codigo";
             Nombre.ParameterName = "nombre";
             Descripcion.ParameterName = "descripcion";
-            IdPosicion.ParameterName = "id_posicion";
+            IdPosicion.ParameterName = "codigo_posicion";
             CuilCandidato.ParameterName = "cuil_candidato";
             LegajoReclutador.ParameterName = "legajo_reclutador";
             Estado.ParameterName = "estado";

@@ -12,12 +12,7 @@ namespace Negocio.ABM
 {
     public class UsuarioNegocio
     {
-        private UsuarioRepo usuarioRepo;
-
-        public UsuarioNegocio()
-        {
-            this.usuarioRepo = new UsuarioRepo();
-        }
+        private UsuarioRepo usuarioRepo = new UsuarioRepo();
 
         public IEnumerable<Usuario> TraerPorPuesto(EPuesto Puesto)
         {
@@ -31,9 +26,7 @@ namespace Negocio.ABM
 
         public Usuario Traer(string Legajo)
         {
-            Usuario usuario = new Usuario();
-            usuario.Legajo = Legajo;
-            return this.usuarioRepo.Traer(usuario);
+            return this.usuarioRepo.Traer(new Usuario { Legajo = Legajo });
         }
 
         public bool Agregar(Usuario Usuario)
@@ -74,15 +67,12 @@ namespace Negocio.ABM
 
             try
             {
-                this.usuarioRepo.Eliminar(Usuario);
+                return this.usuarioRepo.Eliminar(Usuario);
             }
             catch (Exception)
             {
                 return false;
             }
-
-
-            return true;
         }
 
         public bool CambiarContrasena(string Actual, string Nueva)
@@ -90,7 +80,16 @@ namespace Negocio.ABM
             if (Actual != UserHelper.UsuarioSistema.Password)
                 return false;
 
-            this.usuarioRepo.
+            try
+            {
+                return this.usuarioRepo.CambiarPassword(new Usuario { Legajo = UserHelper.UsuarioSistema.Legajo, Password = Nueva });
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            
         }
 
     }

@@ -10,7 +10,7 @@ namespace AccesoDatos.Repositorios
     public abstract class Repositorio<T> where T : IEntidad
     {
 
-        protected SQLContexto Contexto = new SQLContexto();
+        protected SQLContexto contexto = new SQLContexto();
 
         protected abstract string SPTraerTodo { get; set; }
         protected abstract string SPTraerUno { get; set; }
@@ -20,28 +20,28 @@ namespace AccesoDatos.Repositorios
 
         public bool Actualizar(T Entidad)
         {
-            this.Contexto.EjecutarNoQuery(SPActualizar, this.PrepararParametros(EAccion.Actualizar, Entidad));
+            this.contexto.EjecutarNoQuery(SPActualizar, this.PrepararParametros(EAccion.Actualizar, Entidad));
 
             return true;
         }
 
         public bool Eliminar(T Entidad)
         {
-            this.Contexto.EjecutarNoQuery(SPEliminar, this.PrepararParametros(EAccion.Eliminar, Entidad));
+            this.contexto.EjecutarNoQuery(SPEliminar, this.PrepararParametros(EAccion.Eliminar, Entidad));
 
             return true;
         }
 
         public bool Insertar(T Entidad)
         {
-            this.Contexto.EjecutarNoQuery(SPInsertar, this.PrepararParametros(EAccion.Insertar, Entidad));
+            this.contexto.EjecutarNoQuery(SPInsertar, this.PrepararParametros(EAccion.Insertar, Entidad));
 
             return true;
         }
 
         public T Traer(T Entidad)
         {
-            DataTable data = this.Contexto.EjecutarQuery(SPTraerUno, this.PrepararParametros(EAccion.Traer, Entidad));
+            DataTable data = this.contexto.EjecutarQuery(SPTraerUno, this.PrepararParametros(EAccion.Traer, Entidad));
 
 
             foreach (DataRow row in data.Rows)
@@ -57,7 +57,7 @@ namespace AccesoDatos.Repositorios
 
         public IEnumerable<T> TraerTodo()
         {
-            DataTable data = this.Contexto.EjecutarQuery(SPTraerTodo);
+            DataTable data = this.contexto.EjecutarQuery(SPTraerTodo);
 
             foreach (DataRow row in data.Rows)
             {
@@ -67,7 +67,7 @@ namespace AccesoDatos.Repositorios
             }
         }
 
-        protected abstract SqlParameter[] PrepararParametros(EAccion Accion, T Entidad);
+        protected abstract SqlParameter[] PrepararParametros(EAccion Accion, T Entidad, int Elemento = 0);
 
         internal abstract T MapearDataRow(DataRow Row);
 

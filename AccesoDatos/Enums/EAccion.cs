@@ -15,6 +15,9 @@ namespace AccesoDatos.Enums
         TraerPorCandidato,
         TraerPorProceso,
         TraerTecnologias,
-        TraerPorPuesto
+        TraerPorPuesto,
+        CambiarPassword,
+        EliminarTecnologias,
+        AgregarTecnologia
     }
 }

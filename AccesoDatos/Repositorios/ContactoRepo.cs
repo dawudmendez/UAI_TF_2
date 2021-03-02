@@ -20,7 +20,7 @@ namespace AccesoDatos.Repositorios
         protected override string SPInsertar { get ; set ; } = "sp_contacto_insertar";
         protected override string SPEliminar { get ; set ; } = "sp_contacto_eliminar";
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, Contacto Entidad)
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, Contacto Entidad, int Elemento = 0)
         {
             SqlParameter Codigo = new SqlParameter();
             SqlParameter Email = new SqlParameter();

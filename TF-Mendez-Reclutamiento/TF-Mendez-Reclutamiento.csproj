@@ -67,6 +67,12 @@
     <Compile Include="ABM\frmPerfiles.Designer.cs">
       <DependentUpon>frmPerfiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM\frmTecnologias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM\frmTecnologias.Designer.cs">
+      <DependentUpon>frmTecnologias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Enums\EFormAccion.cs" />
     <Compile Include="frmAyuda.cs">
       <SubType>Form</SubType>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM\frmPerfiles.resx">
       <DependentUpon>frmPerfiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM\frmTecnologias.resx">
+      <DependentUpon>frmTecnologias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM\frmUsuarios.resx">
       <DependentUpon>frmUsuarios.cs</DependentUpon>

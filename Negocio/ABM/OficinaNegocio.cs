@@ -39,7 +39,6 @@ namespace Negocio.ABM
             }
             catch (Exception)
             {
-
                 this.direccionRepo.Eliminar(Oficina.Direccion);
                 this.contactoRepo.Eliminar(Oficina.Contacto);
 
@@ -57,6 +56,19 @@ namespace Negocio.ABM
             this.oficinaRepo.Actualizar(Oficina);
 
             return true;
+        }
+
+        public bool Eliminar(string Nombre)
+        {
+            try
+            {
+                this.oficinaRepo.Eliminar(new Oficina { Nombre = Nombre });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

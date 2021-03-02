@@ -17,7 +17,7 @@ namespace AccesoDatos.Repositorios
         protected override string SPEliminar { get; set; } = "sp_tecnologia_eliminar";
         private string SPTraerPorPerfil { get; set; } = "sp_tecnologia_traer_por_perfil";
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, Tecnologia Entidad)
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, Tecnologia Entidad, int Elemento = 0)
         {
             SqlParameter Codigo = new SqlParameter();
             SqlParameter Nombre = new SqlParameter();
@@ -60,7 +60,7 @@ namespace AccesoDatos.Repositorios
         {
             Tecnologia tec = new Tecnologia();
 
-            tec.Codigo = new Guid(Row["id"].ToString());
+            tec.Codigo = new Guid(Row["codigo"].ToString());
             tec.Nombre = Row["nombre"].ToString();
             Enum.TryParse<ETipoTecnologia>(Row["tipo"].ToString(), out ETipoTecnologia tipo);
             tec.Tipo = tipo;

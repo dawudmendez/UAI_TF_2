@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TF-Mendez-Reclutamiento", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{B2F53A9C-9BBB-49E7-AFBA-B2BBDF7483AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controlador", "Controlador\Controlador.csproj", "{6F274B01-7EA0-46DF-9EBB-07B33C9DF3EC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.csproj", "{217FEA40-2575-4D1F-AAE0-7B7FC43B9383}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidades\Entidades.csproj", "{EB56C437-EE0B-4A94-BB94-AD6FE489F602}"
@@ -27,10 +25,6 @@ Global
 		{B2F53A9C-9BBB-49E7-AFBA-B2BBDF7483AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2F53A9C-9BBB-49E7-AFBA-B2BBDF7483AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2F53A9C-9BBB-49E7-AFBA-B2BBDF7483AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F274B01-7EA0-46DF-9EBB-07B33C9DF3EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F274B01-7EA0-46DF-9EBB-07B33C9DF3EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F274B01-7EA0-46DF-9EBB-07B33C9DF3EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F274B01-7EA0-46DF-9EBB-07B33C9DF3EC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{217FEA40-2575-4D1F-AAE0-7B7FC43B9383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{217FEA40-2575-4D1F-AAE0-7B7FC43B9383}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{217FEA40-2575-4D1F-AAE0-7B7FC43B9383}.Release|Any CPU.ActiveCfg = Release|Any CPU

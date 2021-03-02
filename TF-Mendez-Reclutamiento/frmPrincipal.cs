@@ -11,6 +11,7 @@ using TF_Mendez_Reclutamiento.Reportes;
 using TF_Mendez_Reclutamiento.ABM;
 using Entidad.Negocio;
 using Negocio.Helpers;
+using TF_Mendez_Reclutamiento.Helpers;
 
 namespace TF_Mendez_Reclutamiento
 {
@@ -92,7 +93,8 @@ namespace TF_Mendez_Reclutamiento
 
             lblUsuario.Text = texto;
             btnMenuLogout.Text = CerrarSesion;
-            btnCambiarContrasena.Visible = true;
+
+            this.ToggleMenues();
 
             this.CerrarChildActivo();
         }
@@ -102,7 +104,7 @@ namespace TF_Mendez_Reclutamiento
             lblUsuario.Text = "";
             btnMenuLogout.Text = IniciarSesion;
 
-            btnCambiarContrasena.Visible = false;
+            this.ToggleMenues();
 
             this.CerrarChildActivo();
         }
@@ -204,6 +206,16 @@ namespace TF_Mendez_Reclutamiento
                 path = path.Substring(0, path.Length - 2);
 
             lblPath.Text = path;
+        }
+
+        private void ToggleMenues()
+        {
+            foreach (var boton in panelSideMenu.Controls.OfType<Button>())
+            {
+                boton.Visible = boton.Visible ? false : true;
+            }
+
+            btnMenuLogout.Visible = true;            
         }
 
         private void CerrarChildActivo()
@@ -323,6 +335,7 @@ namespace TF_Mendez_Reclutamiento
         {
             lblUsuario.Text = "";
             btnMenuLogout.Text = IniciarSesion;
+            this.ToggleMenues();
         }
 
         private void btnCambiarContrasena_Click(object sender, EventArgs e)

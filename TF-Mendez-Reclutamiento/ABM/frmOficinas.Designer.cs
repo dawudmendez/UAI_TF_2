@@ -30,6 +30,8 @@ namespace TF_Mendez_Reclutamiento.ABM
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtConCodigo = new System.Windows.Forms.TextBox();
+            this.txtDirCodigo = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -66,8 +68,6 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.dgvOficinas = new System.Windows.Forms.DataGridView();
-            this.txtDirCodigo = new System.Windows.Forms.TextBox();
-            this.txtConCodigo = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOficinas)).BeginInit();
             this.SuspendLayout();
@@ -119,6 +119,26 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.panel1.Size = new System.Drawing.Size(688, 707);
             this.panel1.TabIndex = 0;
             // 
+            // txtConCodigo
+            // 
+            this.txtConCodigo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtConCodigo.Enabled = false;
+            this.txtConCodigo.Location = new System.Drawing.Point(125, 446);
+            this.txtConCodigo.Name = "txtConCodigo";
+            this.txtConCodigo.Size = new System.Drawing.Size(208, 20);
+            this.txtConCodigo.TabIndex = 67;
+            this.txtConCodigo.Visible = false;
+            // 
+            // txtDirCodigo
+            // 
+            this.txtDirCodigo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDirCodigo.Enabled = false;
+            this.txtDirCodigo.Location = new System.Drawing.Point(125, 479);
+            this.txtDirCodigo.Name = "txtDirCodigo";
+            this.txtDirCodigo.Size = new System.Drawing.Size(208, 20);
+            this.txtDirCodigo.TabIndex = 65;
+            this.txtDirCodigo.Visible = false;
+            // 
             // label16
             // 
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -162,6 +182,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnEliminar.TabIndex = 61;
             this.btnEliminar.Text = "E&liminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnEditar
             // 
@@ -478,26 +499,6 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.dgvOficinas.Size = new System.Drawing.Size(663, 226);
             this.dgvOficinas.TabIndex = 0;
             this.dgvOficinas.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOficinas_CellMouseDoubleClick);
-            // 
-            // txtDirCodigo
-            // 
-            this.txtDirCodigo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDirCodigo.Enabled = false;
-            this.txtDirCodigo.Location = new System.Drawing.Point(125, 479);
-            this.txtDirCodigo.Name = "txtDirCodigo";
-            this.txtDirCodigo.Size = new System.Drawing.Size(208, 20);
-            this.txtDirCodigo.TabIndex = 65;
-            this.txtDirCodigo.Visible = false;
-            // 
-            // txtConCodigo
-            // 
-            this.txtConCodigo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtConCodigo.Enabled = false;
-            this.txtConCodigo.Location = new System.Drawing.Point(125, 446);
-            this.txtConCodigo.Name = "txtConCodigo";
-            this.txtConCodigo.Size = new System.Drawing.Size(208, 20);
-            this.txtConCodigo.TabIndex = 67;
-            this.txtConCodigo.Visible = false;
             // 
             // frmOficinas
             // 

@@ -91,6 +91,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnEliminar.TabIndex = 24;
             this.btnEliminar.Text = "E&liminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnEditar
             // 
@@ -112,6 +113,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnCancelar.TabIndex = 22;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
@@ -137,7 +139,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(368, 270);
+            this.label3.Location = new System.Drawing.Point(367, 244);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 19;
@@ -172,7 +174,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(368, 244);
+            this.label4.Location = new System.Drawing.Point(367, 270);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 15;

@@ -31,6 +31,7 @@ namespace TF_Mendez_Reclutamiento
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.panelSideMenu = new System.Windows.Forms.Panel();
+            this.btnCambiarContrasena = new System.Windows.Forms.Button();
             this.btnMenuAyuda = new System.Windows.Forms.Button();
             this.btnMenuLogout = new System.Windows.Forms.Button();
             this.panelAdministracion = new System.Windows.Forms.Panel();
@@ -44,7 +45,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnRepCandidato = new System.Windows.Forms.Button();
             this.btnRepPosicion = new System.Windows.Forms.Button();
             this.btnRepProceso = new System.Windows.Forms.Button();
-            this.btnMenuReportes = new System.Windows.Forms.Button();
+            this.btnMenuAnalytics = new System.Windows.Forms.Button();
             this.panelSeleccion = new System.Windows.Forms.Panel();
             this.btnProEntrevista = new System.Windows.Forms.Button();
             this.btnProSeleccion = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@ namespace TF_Mendez_Reclutamiento
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnCambiarContrasena = new System.Windows.Forms.Button();
             this.panelSideMenu.SuspendLayout();
             this.panelAdministracion.SuspendLayout();
             this.panelReportes.SuspendLayout();
@@ -87,7 +87,7 @@ namespace TF_Mendez_Reclutamiento
             this.panelSideMenu.Controls.Add(this.panelAdministracion);
             this.panelSideMenu.Controls.Add(this.btnMenuAdministracion);
             this.panelSideMenu.Controls.Add(this.panelReportes);
-            this.panelSideMenu.Controls.Add(this.btnMenuReportes);
+            this.panelSideMenu.Controls.Add(this.btnMenuAnalytics);
             this.panelSideMenu.Controls.Add(this.panelSeleccion);
             this.panelSideMenu.Controls.Add(this.btnMenuSeleccion);
             this.panelSideMenu.Controls.Add(this.btnMenuCandidatos);
@@ -97,8 +97,24 @@ namespace TF_Mendez_Reclutamiento
             this.panelSideMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSideMenu.Location = new System.Drawing.Point(0, 0);
             this.panelSideMenu.Name = "panelSideMenu";
-            this.panelSideMenu.Size = new System.Drawing.Size(230, 561);
+            this.panelSideMenu.Size = new System.Drawing.Size(230, 649);
             this.panelSideMenu.TabIndex = 0;
+            // 
+            // btnCambiarContrasena
+            // 
+            this.btnCambiarContrasena.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCambiarContrasena.FlatAppearance.BorderSize = 0;
+            this.btnCambiarContrasena.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCambiarContrasena.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnCambiarContrasena.Location = new System.Drawing.Point(0, 877);
+            this.btnCambiarContrasena.Name = "btnCambiarContrasena";
+            this.btnCambiarContrasena.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnCambiarContrasena.Size = new System.Drawing.Size(213, 45);
+            this.btnCambiarContrasena.TabIndex = 11;
+            this.btnCambiarContrasena.Text = "Cambiar Contraseña";
+            this.btnCambiarContrasena.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCambiarContrasena.UseVisualStyleBackColor = true;
+            this.btnCambiarContrasena.Click += new System.EventHandler(this.btnCambiarContrasena_Click);
             // 
             // btnMenuAyuda
             // 
@@ -110,7 +126,7 @@ namespace TF_Mendez_Reclutamiento
             this.btnMenuAyuda.Name = "btnMenuAyuda";
             this.btnMenuAyuda.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnMenuAyuda.Size = new System.Drawing.Size(213, 45);
-            this.btnMenuAyuda.TabIndex = 11;
+            this.btnMenuAyuda.TabIndex = 12;
             this.btnMenuAyuda.Text = "Ayuda";
             this.btnMenuAyuda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuAyuda.UseVisualStyleBackColor = true;
@@ -302,21 +318,21 @@ namespace TF_Mendez_Reclutamiento
             this.btnRepProceso.UseVisualStyleBackColor = true;
             this.btnRepProceso.Click += new System.EventHandler(this.btnRepProceso_Click);
             // 
-            // btnMenuReportes
+            // btnMenuAnalytics
             // 
-            this.btnMenuReportes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMenuReportes.FlatAppearance.BorderSize = 0;
-            this.btnMenuReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenuReportes.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnMenuReportes.Location = new System.Drawing.Point(0, 403);
-            this.btnMenuReportes.Name = "btnMenuReportes";
-            this.btnMenuReportes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnMenuReportes.Size = new System.Drawing.Size(213, 45);
-            this.btnMenuReportes.TabIndex = 6;
-            this.btnMenuReportes.Text = "Reportes";
-            this.btnMenuReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuReportes.UseVisualStyleBackColor = true;
-            this.btnMenuReportes.Click += new System.EventHandler(this.btnMenuReportes_Click);
+            this.btnMenuAnalytics.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuAnalytics.FlatAppearance.BorderSize = 0;
+            this.btnMenuAnalytics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuAnalytics.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnMenuAnalytics.Location = new System.Drawing.Point(0, 403);
+            this.btnMenuAnalytics.Name = "btnMenuAnalytics";
+            this.btnMenuAnalytics.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnMenuAnalytics.Size = new System.Drawing.Size(213, 45);
+            this.btnMenuAnalytics.TabIndex = 6;
+            this.btnMenuAnalytics.Text = "Analytics";
+            this.btnMenuAnalytics.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMenuAnalytics.UseVisualStyleBackColor = true;
+            this.btnMenuAnalytics.Click += new System.EventHandler(this.btnMenuReportes_Click);
             // 
             // panelSeleccion
             // 
@@ -517,7 +533,7 @@ namespace TF_Mendez_Reclutamiento
             this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelChildForm.Location = new System.Drawing.Point(230, 46);
             this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(704, 515);
+            this.panelChildForm.Size = new System.Drawing.Size(704, 603);
             this.panelChildForm.TabIndex = 2;
             // 
             // panel1
@@ -525,7 +541,7 @@ namespace TF_Mendez_Reclutamiento
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
             this.panel1.Controls.Add(this.lblUsuario);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 469);
+            this.panel1.Location = new System.Drawing.Point(0, 557);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(704, 46);
             this.panel1.TabIndex = 1;
@@ -544,35 +560,18 @@ namespace TF_Mendez_Reclutamiento
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(128, 45);
+            this.pictureBox1.Location = new System.Drawing.Point(128, 89);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(437, 215);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // btnCambiarContrasena
-            // 
-            this.btnCambiarContrasena.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnCambiarContrasena.FlatAppearance.BorderSize = 0;
-            this.btnCambiarContrasena.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCambiarContrasena.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnCambiarContrasena.Location = new System.Drawing.Point(0, 877);
-            this.btnCambiarContrasena.Name = "btnCambiarContrasena";
-            this.btnCambiarContrasena.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnCambiarContrasena.Size = new System.Drawing.Size(213, 45);
-            this.btnCambiarContrasena.TabIndex = 12;
-            this.btnCambiarContrasena.Text = "Cambiar Contraseña";
-            this.btnCambiarContrasena.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCambiarContrasena.UseVisualStyleBackColor = true;
-            this.btnCambiarContrasena.Visible = false;
-            this.btnCambiarContrasena.Click += new System.EventHandler(this.btnCambiarContrasena_Click);
-            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 561);
+            this.ClientSize = new System.Drawing.Size(934, 649);
             this.Controls.Add(this.panelChildForm);
             this.Controls.Add(this.panelNavegacion);
             this.Controls.Add(this.panelSideMenu);
@@ -619,7 +618,7 @@ namespace TF_Mendez_Reclutamiento
         private System.Windows.Forms.Button btnRepCandidato;
         private System.Windows.Forms.Button btnRepPosicion;
         private System.Windows.Forms.Button btnRepProceso;
-        private System.Windows.Forms.Button btnMenuReportes;
+        private System.Windows.Forms.Button btnMenuAnalytics;
         private System.Windows.Forms.Panel panelAdministracion;
         private System.Windows.Forms.Button btnAdminEquipo;
         private System.Windows.Forms.Button btnAdminUsuario;

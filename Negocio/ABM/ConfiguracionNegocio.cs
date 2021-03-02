@@ -23,5 +23,18 @@ namespace Negocio.ABM
 
             return default;
         }
+
+        public bool ActualizarConfiguracion(Configuracion Configuracion)
+        {
+            try
+            {
+                this.configuracionRepo.Actualizar(Configuracion);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

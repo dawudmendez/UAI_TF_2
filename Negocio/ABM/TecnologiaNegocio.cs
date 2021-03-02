@@ -1,29 +1,64 @@
-﻿using Entidad.Negocio;
-using AccesoDatos.Repositorios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AccesoDatos.Repositorios;
+using Entidad.Enums;
+using Entidad.Negocio;
+using Negocio.Helpers;
+using System;
+using System.Collections.Generic;
 
 namespace Negocio.ABM
 {
     public class TecnologiaNegocio
     {
-        private TecnologiaRepo repo;
-        public TecnologiaNegocio()
+        private TecnologiaRepo tecnologiaRepo = new TecnologiaRepo();
+
+        public IEnumerable<Tecnologia> Traer()
         {
-            this.repo = new TecnologiaRepo();
+            return this.tecnologiaRepo.TraerTodo();
         }
-        public void TraerTodo()
+
+        public Tecnologia Traer(string Codigo)
         {
-            //Tecnologia tec = new Tecnologia();
-            //tec.Id = 1;
+            return this.tecnologiaRepo.Traer(new Tecnologia { Codigo = new Guid(Codigo) });
+        }
 
-            //tec = repo.Traer(tec);
+        public bool Agregar(Tecnologia Tecnologia)
+        {
+            try
+            {
+                Tecnologia.Codigo = Guid.NewGuid();
+                return this.tecnologiaRepo.Insertar(Tecnologia);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-            //return tec;
+        public bool Modificar(Tecnologia Tecnologia)
+        {
+            try
+            {
+                return this.tecnologiaRepo.Actualizar(Tecnologia);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public bool Eliminar(string Codigo)
+        {
+            try
+            {
+                return this.tecnologiaRepo.Eliminar(new Tecnologia { Codigo = new Guid(Codigo) });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

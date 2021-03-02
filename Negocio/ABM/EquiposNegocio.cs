@@ -50,8 +50,20 @@ namespace Negocio.ABM
                 return false;
             }
 
-
             return true;
+        }
+
+        public bool Eliminar(string Nombre)
+        {
+            try
+            {
+                this.equipoRepo.Eliminar(new Equipo { Nombre = Nombre });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

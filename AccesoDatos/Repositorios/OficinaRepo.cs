@@ -24,7 +24,7 @@ namespace AccesoDatos.Repositorios
         protected override string SPInsertar { get; set; } = "sp_oficina_insertar";
         protected override string SPEliminar { get; set; } = "sp_oficina_eliminar";
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, Oficina Entidad)
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, Oficina Entidad, int Elemento = 0)
         {
             SqlParameter Nombre = new SqlParameter();
             SqlParameter CodigoDireccion = new SqlParameter();

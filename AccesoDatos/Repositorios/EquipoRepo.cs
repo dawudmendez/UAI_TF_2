@@ -23,7 +23,7 @@ namespace AccesoDatos.Repositorios
         protected override string SPInsertar { get; set; } = "sp_equipo_insertar";
         protected override string SPEliminar { get; set; } = "sp_equipo_eliminar";
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, Equipo Entidad)
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, Equipo Entidad, int Elemento = 0)
         {
             SqlParameter Nombre = new SqlParameter();
             SqlParameter Descripcion = new SqlParameter();
@@ -37,8 +37,8 @@ namespace AccesoDatos.Repositorios
 
             Nombre.Value = Entidad.Nombre;
             Descripcion.Value = Entidad.Descripcion;
-            LegajoLider.Value = Entidad.Lider.Legajo;
-            LegajoManager.Value = Entidad.Manager.Legajo;
+            LegajoLider.Value = Entidad.Lider?.Legajo;
+            LegajoManager.Value = Entidad.Manager?.Legajo;
 
             List<SqlParameter> Parametros = new List<SqlParameter>();
 
@@ -68,8 +68,8 @@ namespace AccesoDatos.Repositorios
         {
             Equipo equi = new Equipo();
 
-            equi.Nombre = Row["id"].ToString();
-            equi.Descripcion = Row["id"].ToString();
+            equi.Nombre = Row["nombre"].ToString();
+            equi.Descripcion = Row["descripcion"].ToString();
             equi.Lider = this.UsuarioRepo.Traer(new Usuario { Legajo = Row["legajo_lider"].ToString() });
             equi.Manager = this.UsuarioRepo.Traer(new Usuario { Legajo = Row["legajo_manager"].ToString() });
 

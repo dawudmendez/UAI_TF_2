@@ -24,9 +24,9 @@ namespace AccesoDatos.Repositorios
         protected override string SPEliminar { get; set; } = "sp_educacion_eliminar";
         private string SPTraerPorCandidato { get; set; } = "sp_educacion_traer_por_candidato";
 
-        public IEnumerable<Educacion> TraerPorCandidatgo(Candidato Candidato)
+        public IEnumerable<Educacion> TraerPorCandidato(Candidato Candidato)
         {
-            DataTable data = this.Contexto.EjecutarQuery(SPTraerPorCandidato, this.PrepararParametros(EAccion.TraerPorProceso, new Educacion { Candidato = Candidato }));
+            DataTable data = this.contexto.EjecutarQuery(SPTraerPorCandidato, this.PrepararParametros(EAccion.TraerPorProceso, new Educacion { Candidato = Candidato }));
 
             foreach (DataRow row in data.Rows)
             {
@@ -38,7 +38,7 @@ namespace AccesoDatos.Repositorios
             yield return default;
         }
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, Educacion Entidad)
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, Educacion Entidad, int Elemento = 0)
         {
             SqlParameter Codigo = new SqlParameter();
             SqlParameter Institucion = new SqlParameter();

@@ -26,11 +26,13 @@ namespace AccesoDatos.Repositorios
         protected override string SPEliminar { get; set; } = "sp_experiencia_eliminar";
         private string SPTraerPorCandidato { get; set; } = "sp_experiencia_traer_por_candidato";
         private string SPTraerTecnologias { get; set; } = "sp_experiencia_traer_tecnologias";
+        private string SPEliminarTecnologias { get; set; } = "sp_experiencia_eliminar_tecnologias";
+        private string SPAgregarTecnologia { get; set; } = "sp_perfil_insertar_tecnologia";
 
         public IEnumerable<Experiencia> TraerPorCandidato(Candidato Candidato)
         {
 
-            DataTable data = this.Contexto.EjecutarQuery(SPTraerPorCandidato, this.PrepararParametros(EAccion.TraerPorCandidato, new Experiencia { Candidato = Candidato }));
+            DataTable data = this.contexto.EjecutarQuery(SPTraerPorCandidato, this.PrepararParametros(EAccion.TraerPorCandidato, new Experiencia { Candidato = Candidato }));
 
             foreach (DataRow row in data.Rows)
             {
@@ -44,7 +46,7 @@ namespace AccesoDatos.Repositorios
 
         private IEnumerable<Tecnologia> TraerTecnologias(Experiencia Experiencia)
         {
-            DataTable data = this.Contexto.EjecutarQuery(SPTraerTecnologias, this.PrepararParametros(EAccion.TraerTecnologias, Experiencia));
+            DataTable data = this.contexto.EjecutarQuery(SPTraerTecnologias, this.PrepararParametros(EAccion.TraerTecnologias, Experiencia));
 
             foreach (DataRow row in data.Rows)
             {
@@ -56,7 +58,37 @@ namespace AccesoDatos.Repositorios
             yield return default;
         }
 
-        protected override SqlParameter[] PrepararParametros(EAccion Accion, Experiencia Entidad)
+        public new bool Insertar(Experiencia Entidad)
+        {
+            this.contexto.EjecutarNoQuery(SPInsertar, this.PrepararParametros(EAccion.Insertar, Entidad));
+
+            this.AgregarTecnologias(Entidad);
+
+            return true;
+        }
+
+        public new bool Actualizar(Experiencia Entidad)
+        {
+            this.contexto.EjecutarNoQuery(SPActualizar, this.PrepararParametros(EAccion.Actualizar, Entidad));
+
+            this.AgregarTecnologias(Entidad);
+
+            return true;
+        }
+
+        private void AgregarTecnologias(Experiencia Entidad)
+        {
+            this.contexto.EjecutarNoQuery(SPEliminarTecnologias, this.PrepararParametros(EAccion.EliminarTecnologias, Entidad));
+
+            int i = 0;
+            foreach (var tecnologia in Entidad.Tecnologias)
+            {
+                this.contexto.EjecutarNoQuery(SPAgregarTecnologia, this.PrepararParametros(EAccion.AgregarTecnologia, Entidad, i));
+                i++;
+            }
+        }
+
+        protected override SqlParameter[] PrepararParametros(EAccion Accion, Experiencia Entidad, int Elemento = 0)
         {
             SqlParameter Codigo = new SqlParameter();
             SqlParameter Puesto = new SqlParameter();
@@ -66,6 +98,7 @@ namespace AccesoDatos.Repositorios
             SqlParameter FechaHasta = new SqlParameter();
             SqlParameter Descripcion = new SqlParameter();
             SqlParameter CuilCandidato = new SqlParameter();
+            SqlParameter CodigoTecnologia = new SqlParameter();
 
             Codigo.ParameterName = "codigo";
             Puesto.ParameterName = "puesto";
@@ -75,6 +108,7 @@ namespace AccesoDatos.Repositorios
             FechaHasta.ParameterName = "fechahasta";
             Descripcion.ParameterName = "descripcion";
             CuilCandidato.ParameterName = "cuil_candidato";
+            CodigoTecnologia.ParameterName = "codigo_tecnologia";
 
             Codigo.Value = Entidad.Codigo;
             Puesto.Value = Entidad.Puesto;
@@ -103,6 +137,12 @@ namespace AccesoDatos.Repositorios
 
                 case EAccion.TraerPorCandidato:
                     Parametros.Add(CuilCandidato);
+                    break;
+
+                case EAccion.AgregarTecnologia:
+                    CodigoTecnologia.Value = Entidad.Tecnologias[Elemento].Codigo;
+                    Parametros.Add(Codigo);
+                    Parametros.Add(CodigoTecnologia);
                     break;
 
                 case EAccion.TraerTecnologias:
