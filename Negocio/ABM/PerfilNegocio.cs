@@ -7,66 +7,66 @@ using Entidad.Negocio;
 using Negocio.Helpers;
 using System;
 using System.Collections.Generic;
+using AccesoDatos.Contexto;
 
 namespace Negocio.ABM
 {
     public class PerfilNegocio
     {
-        private PerfilRepo perfilRepo = new PerfilRepo();
-        private TecnologiaRepo tecnologiaRepo = new TecnologiaRepo();
-
-        public IEnumerable<Perfil> TraerPerfiles()
+        public List<Perfil> TraerPerfiles()
         {
-            return this.perfilRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                PerfilRepo perfilRepo = new PerfilRepo(contexto);
+                return perfilRepo.TraerTodo();
+            }            
         }
 
         public Perfil TraerPerfil(string Codigo)
         {
-            return this.perfilRepo.Traer(new Perfil { Codigo = new Guid(Codigo) });
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                PerfilRepo perfilRepo = new PerfilRepo(contexto);
+                return perfilRepo.Traer(new Perfil { Codigo = new Guid(Codigo) });
+            }            
         }
 
         public bool AgregarPerfil(Perfil Perfil)
         {
-            try
-            {
-                Perfil.Codigo = Guid.NewGuid();
+            Perfil.Codigo = Guid.NewGuid();
 
-                //Este método agrega todas las categorías que haya
-                return this.perfilRepo.Insertar(Perfil);
-            }
-            catch (Exception ex)
+            using (SQLContexto contexto = new SQLContexto())
             {
-                throw ex;
+                PerfilRepo perfilRepo = new PerfilRepo(contexto);
+                return perfilRepo.Insertar(Perfil);
             }
         }
 
         public bool ModificarPerfil(Perfil Perfil)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.perfilRepo.Actualizar(Perfil);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                PerfilRepo perfilRepo = new PerfilRepo(contexto);
+                return perfilRepo.Actualizar(Perfil);
             }
         }
 
         public bool EliminarPerfil(string Codigo)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.perfilRepo.Eliminar(new Perfil { Codigo = new Guid(Codigo) });
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                PerfilRepo perfilRepo = new PerfilRepo(contexto);
+                return perfilRepo.Eliminar(new Perfil { Codigo = new Guid(Codigo) });
             }
         }
 
         public Tecnologia TraerTecnologia(string Codigo)
         {
-            return this.tecnologiaRepo.Traer(new Tecnologia { Codigo = new Guid(Codigo) });
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                TecnologiaRepo tecnologiaRepo = new TecnologiaRepo(contexto);
+                return tecnologiaRepo.Traer(new Tecnologia { Codigo = new Guid(Codigo) });
+            }
         }
     }
 }

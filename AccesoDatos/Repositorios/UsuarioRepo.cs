@@ -1,4 +1,5 @@
-﻿using AccesoDatos.Enums;
+﻿using AccesoDatos.Contexto;
+using AccesoDatos.Enums;
 using Entidad.Enums;
 using Entidad.Negocio;
 using System;
@@ -19,19 +20,27 @@ namespace AccesoDatos.Repositorios
         private string SPTraerPorPuesto { get; set; } = "sp_usuario_traer_por_puesto";
         private string SPCambiarPassword { get; set; } = "sp_usuario_cambiar_password";
 
-        public IEnumerable<Usuario> TraerPorPuesto(EPuesto Puesto)
+        public UsuarioRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
+
+        public List<Usuario> TraerPorPuesto(EPuesto Puesto)
         {
             Usuario Entidad = new Usuario();
             Entidad.Puesto = Puesto;
 
             DataTable data = this.contexto.EjecutarQuery(SPTraerPorPuesto, this.PrepararParametros(EAccion.TraerPorPuesto, Entidad));
 
+            List<Usuario> lista = new List<Usuario>();
+
             foreach (DataRow row in data.Rows)
             {
                 Usuario entidad = this.MapearDataRow(row);
-
-                yield return entidad;
+                lista.Add(entidad);
             }
+
+            return lista;
         }
 
         public bool CambiarPassword(Usuario Entidad)

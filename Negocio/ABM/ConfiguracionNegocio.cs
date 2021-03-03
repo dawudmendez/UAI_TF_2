@@ -1,4 +1,5 @@
-﻿using AccesoDatos.Repositorios;
+﻿using AccesoDatos.Contexto;
+using AccesoDatos.Repositorios;
 using Entidad.Negocio;
 using System;
 using System.Collections.Generic;
@@ -10,30 +11,29 @@ namespace Negocio.ABM
 {
     public class ConfiguracionNegocio
     {
-        private ConfiguracionRepo configuracionRepo = new ConfiguracionRepo();
-
         public Configuracion TraerConfiguracion()
         {
-            List<Configuracion> conf = this.configuracionRepo.TraerTodo().ToList();
-
-            foreach (var item in conf)
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return item;
-            }
+                ConfiguracionRepo configuracionRepo = new ConfiguracionRepo(contexto);
+                List<Configuracion> conf = configuracionRepo.TraerTodo();
 
-            return default;
+                foreach (var item in conf)
+                {
+                    return item;
+                }
+
+                return default;
+            }
+            
         }
 
         public bool ActualizarConfiguracion(Configuracion Configuracion)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.configuracionRepo.Actualizar(Configuracion);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
+                ConfiguracionRepo configuracionRepo = new ConfiguracionRepo(contexto);
+                return configuracionRepo.Actualizar(Configuracion);
             }
         }
     }

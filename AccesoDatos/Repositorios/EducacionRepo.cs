@@ -15,8 +15,6 @@ namespace AccesoDatos.Repositorios
 {
     public class EducacionRepo : Repositorio<Educacion>
     {
-        private CandidatoRepo CandidatoRepo = new CandidatoRepo();
-
         protected override string SPTraerTodo { get; set; } = "sp_educacion_traer";
         protected override string SPTraerUno { get; set; } = "sp_educacion_traeruno";
         protected override string SPActualizar { get; set; } = "sp_educacion_actualizar";
@@ -24,18 +22,24 @@ namespace AccesoDatos.Repositorios
         protected override string SPEliminar { get; set; } = "sp_educacion_eliminar";
         private string SPTraerPorCandidato { get; set; } = "sp_educacion_traer_por_candidato";
 
-        public IEnumerable<Educacion> TraerPorCandidato(Candidato Candidato)
+        public EducacionRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
+
+        public List<Educacion> TraerPorCandidato(Candidato Candidato)
         {
             DataTable data = this.contexto.EjecutarQuery(SPTraerPorCandidato, this.PrepararParametros(EAccion.TraerPorProceso, new Educacion { Candidato = Candidato }));
+
+            List<Educacion> lista = new List<Educacion>();
 
             foreach (DataRow row in data.Rows)
             {
                 Educacion entidad = this.MapearDataRow(row);
-
-                yield return entidad;
+                lista.Add(entidad);
             }
 
-            yield return default;
+            return lista;
         }
 
         protected override SqlParameter[] PrepararParametros(EAccion Accion, Educacion Entidad, int Elemento = 0)
@@ -120,7 +124,7 @@ namespace AccesoDatos.Repositorios
             edu.FechaHasta = Convert.ToDateTime(Row["fechahasta"].ToString());
             edu.RubroCarrera = (ERubroCarrera)Enum.Parse(typeof(ERubroCarrera), Row["rubrocarrera"].ToString(), true);
             edu.Estado = (EEstadoEducacion)Enum.Parse(typeof(EEstadoEducacion), Row["estado"].ToString(), true);
-            edu.Candidato = this.CandidatoRepo.Traer(new Candidato { Cuil = Row["cuil"].ToString() });
+            edu.Candidato = new Candidato { Cuil = Row["cuil"].ToString() };
 
             return edu;
         }

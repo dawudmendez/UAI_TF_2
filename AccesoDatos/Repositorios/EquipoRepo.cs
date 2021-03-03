@@ -15,13 +15,16 @@ namespace AccesoDatos.Repositorios
 {
     public class EquipoRepo : Repositorio<Equipo>
     {
-        private UsuarioRepo UsuarioRepo = new UsuarioRepo();
-
         protected override string SPTraerTodo { get; set; } = "sp_equipo_traer";
         protected override string SPTraerUno { get; set; } = "sp_equipo_traeruno";
         protected override string SPActualizar { get; set; } = "sp_equipo_actualizar";
         protected override string SPInsertar { get; set; } = "sp_equipo_insertar";
         protected override string SPEliminar { get; set; } = "sp_equipo_eliminar";
+
+        public EquipoRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
 
         protected override SqlParameter[] PrepararParametros(EAccion Accion, Equipo Entidad, int Elemento = 0)
         {
@@ -70,8 +73,8 @@ namespace AccesoDatos.Repositorios
 
             equi.Nombre = Row["nombre"].ToString();
             equi.Descripcion = Row["descripcion"].ToString();
-            equi.Lider = this.UsuarioRepo.Traer(new Usuario { Legajo = Row["legajo_lider"].ToString() });
-            equi.Manager = this.UsuarioRepo.Traer(new Usuario { Legajo = Row["legajo_manager"].ToString() });
+            equi.Lider = new Usuario { Legajo = Row["legajo_lider"].ToString() };
+            equi.Manager = new Usuario { Legajo = Row["legajo_manager"].ToString() };
 
             return equi;
         }

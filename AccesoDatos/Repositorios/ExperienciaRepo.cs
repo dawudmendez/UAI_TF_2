@@ -16,9 +16,6 @@ namespace AccesoDatos.Repositorios
 {
     public class ExperienciaRepo : Repositorio<Experiencia>
     {
-        private CandidatoRepo CandidatoRepo = new CandidatoRepo();
-        private TecnologiaRepo TecnologiaRepo = new TecnologiaRepo();
-
         protected override string SPTraerTodo { get; set; } = "sp_experiencia_traer";
         protected override string SPTraerUno { get; set; } = "sp_experiencia_traeruno";
         protected override string SPActualizar { get; set; } = "sp_experiencia_actualizar";
@@ -29,34 +26,40 @@ namespace AccesoDatos.Repositorios
         private string SPEliminarTecnologias { get; set; } = "sp_experiencia_eliminar_tecnologias";
         private string SPAgregarTecnologia { get; set; } = "sp_perfil_insertar_tecnologia";
 
-        public IEnumerable<Experiencia> TraerPorCandidato(Candidato Candidato)
+        public ExperienciaRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
+
+        public List<Experiencia> TraerPorCandidato(Candidato Candidato)
         {
 
             DataTable data = this.contexto.EjecutarQuery(SPTraerPorCandidato, this.PrepararParametros(EAccion.TraerPorCandidato, new Experiencia { Candidato = Candidato }));
 
+            List<Experiencia> lista = new List<Experiencia>();
+
             foreach (DataRow row in data.Rows)
             {
                 Experiencia entidad = this.MapearDataRow(row);
-
-                yield return entidad;
+                lista.Add(entidad);
             }
 
-            yield return default;
+            return lista;
         }
 
-        private IEnumerable<Tecnologia> TraerTecnologias(Experiencia Experiencia)
-        {
-            DataTable data = this.contexto.EjecutarQuery(SPTraerTecnologias, this.PrepararParametros(EAccion.TraerTecnologias, Experiencia));
+        //private IEnumerable<Tecnologia> TraerTecnologias(Experiencia Experiencia)
+        //{
+        //    DataTable data = this.contexto.EjecutarQuery(SPTraerTecnologias, this.PrepararParametros(EAccion.TraerTecnologias, Experiencia));
 
-            foreach (DataRow row in data.Rows)
-            {
-                Tecnologia entidad = this.TecnologiaRepo.MapearDataRow(row);
+        //    foreach (DataRow row in data.Rows)
+        //    {
+        //        Tecnologia entidad = this.TecnologiaRepo.MapearDataRow(row);
 
-                yield return entidad;
-            }
+        //        yield return entidad;
+        //    }
 
-            yield return default;
-        }
+        //    yield return default;
+        //}
 
         public new bool Insertar(Experiencia Entidad)
         {
@@ -169,8 +172,7 @@ namespace AccesoDatos.Repositorios
             expe.FechaDesde = Convert.ToDateTime(Row["fechadesde"].ToString());
             expe.FechaHasta = Convert.ToDateTime(Row["fechahasta"].ToString());
             expe.Descripcion = Row["descripcion"].ToString();
-            expe.Candidato = this.CandidatoRepo.Traer(new Candidato { Cuil = Row["cuil"].ToString() });
-            expe.Tecnologias = this.TraerTecnologias(expe).ToList();
+            expe.Candidato = new Candidato { Cuil = Row["cuil"].ToString() };
 
             return expe;
         }

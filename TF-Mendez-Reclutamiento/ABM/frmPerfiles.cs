@@ -42,7 +42,7 @@ namespace TF_Mendez_Reclutamiento.ABM
         {
             dgvPerfiles.Rows.Clear();
 
-            List<Perfil> perfiles = this.perfilNegocio.TraerPerfiles().ToList();
+            List<Perfil> perfiles = this.perfilNegocio.TraerPerfiles();
 
             dgvPerfiles.ColumnCount = 4;
             dgvPerfiles.Columns[0].Name = "Código";
@@ -209,7 +209,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.PrepararDataGridViews();
             this.PrepararComboBoxes();
             this.PrepararFaseInicial();
-            this.frmTecnologias.TecnologiaSeleccionada += SeleccionarTecnologia;
+            this.frmTecnologias.TecnologiaSeleccionada += this.SeleccionarTecnologia;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -297,7 +297,7 @@ namespace TF_Mendez_Reclutamiento.ABM
 
             this.perfil.Tecnologias.Add(Tecnologia);
 
-            this.CargarDataGridTecnologias(perfil);
+            this.CargarDataGridTecnologias(this.perfil);
             this.frmTecnologias.Close();
         }
 
@@ -318,7 +318,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             try
             {
                 if (this.perfilNegocio.EliminarPerfil(txtCodigo.Text))
-                    MessageBox.Show("Perfil eliminado exitosamente", "Error");
+                    MessageBox.Show("Perfil eliminado exitosamente", "Éxito");
                 else
                     MessageBox.Show("Hubo un error al eliminar el perfil", "Error");
 

@@ -20,6 +20,11 @@ namespace AccesoDatos.Repositorios
         protected override string SPInsertar { get; set; } = "sp_direccion_insertar";
         protected override string SPEliminar { get; set; } = "sp_direccion_eliminar";
 
+        public DireccionRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
+
         protected override SqlParameter[] PrepararParametros(EAccion Accion, Direccion Entidad, int Elemento = 0)
         {
             SqlParameter Codigo = new SqlParameter();

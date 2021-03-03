@@ -39,7 +39,7 @@ namespace TF_Mendez_Reclutamiento.ABM
         {
             dgvEquipos.Rows.Clear();
 
-            List<Equipo> equipos = this.equipoNegocio.TraerTodo().ToList();
+            List<Equipo> equipos = this.equipoNegocio.TraerTodo();
 
             dgvEquipos.ColumnCount = 4;
             dgvEquipos.Columns[0].Name = "Nombre";

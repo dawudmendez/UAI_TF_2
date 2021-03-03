@@ -1,4 +1,5 @@
-﻿using AccesoDatos.Enums;
+﻿using AccesoDatos.Contexto;
+using AccesoDatos.Enums;
 using Entidad.Enums;
 using Entidad.Negocio;
 using System;
@@ -11,16 +12,16 @@ namespace AccesoDatos.Repositorios
 {
     public class ProcesoSeleccionRepo : Repositorio<ProcesoSeleccion>
     {
-        private PosicionRepo PosicionRepo = new PosicionRepo();
-        private CandidatoRepo CandidatoRepo = new CandidatoRepo();
-        private UsuarioRepo UsuarioRepo = new UsuarioRepo();
-        private EntrevistaRepo EntrevistaRepo = new EntrevistaRepo();
-
         protected override string SPTraerTodo { get; set; } = "sp_proceso_traer";
         protected override string SPTraerUno { get; set; } = "sp_proceso_traeruno";
         protected override string SPActualizar { get; set; } = "sp_proceso_actualizar";
         protected override string SPInsertar { get; set; } = "sp_proceso_insertar";
         protected override string SPEliminar { get; set; } = "sp_proceso_eliminar";
+
+        public ProcesoSeleccionRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
 
         protected override SqlParameter[] PrepararParametros(EAccion Accion, ProcesoSeleccion Entidad, int Elemento = 0)
         {
@@ -86,12 +87,11 @@ namespace AccesoDatos.Repositorios
             proc.Codigo = new Guid(Row["id"].ToString());
             proc.Nombre = Row["nombre"].ToString();
             proc.Descripcion = Row["descripcion"].ToString();
-            proc.Posicion = this.PosicionRepo.Traer(new Posicion { Codigo = new Guid(Row["id"].ToString()) });
-            proc.Candidato = this.CandidatoRepo.Traer(new Candidato { Cuil = Row["cuil"].ToString() });
-            proc.Reclutador = this.UsuarioRepo.Traer(new Usuario { Legajo = Row["legajo"].ToString() });
+            proc.Posicion = new Posicion { Codigo = new Guid(Row["id"].ToString()) };
+            proc.Candidato = new Candidato { Cuil = Row["cuil"].ToString() };
+            proc.Reclutador = new Usuario { Legajo = Row["legajo"].ToString() };
             proc.Estado = (EEstadoProcesoSeleccion)Enum.Parse(typeof(EEstadoProcesoSeleccion), Row["estado"].ToString(), true);
             proc.Comentarios = Row["comentarios"].ToString();
-            proc.Entrevistas = this.EntrevistaRepo.TraerPorProceso(proc).ToList();
 
             return proc;
         }

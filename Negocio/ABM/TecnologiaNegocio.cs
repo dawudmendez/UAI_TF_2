@@ -7,57 +7,56 @@ using Entidad.Negocio;
 using Negocio.Helpers;
 using System;
 using System.Collections.Generic;
+using AccesoDatos.Contexto;
 
 namespace Negocio.ABM
 {
     public class TecnologiaNegocio
     {
-        private TecnologiaRepo tecnologiaRepo = new TecnologiaRepo();
 
-        public IEnumerable<Tecnologia> Traer()
+        public List<Tecnologia> Traer()
         {
-            return this.tecnologiaRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                TecnologiaRepo tecnologiaRepo = new TecnologiaRepo(contexto);
+                return tecnologiaRepo.TraerTodo();
+            }
         }
 
         public Tecnologia Traer(string Codigo)
         {
-            return this.tecnologiaRepo.Traer(new Tecnologia { Codigo = new Guid(Codigo) });
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                TecnologiaRepo tecnologiaRepo = new TecnologiaRepo(contexto);
+                return tecnologiaRepo.Traer(new Tecnologia { Codigo = new Guid(Codigo) });
+            }
         }
 
         public bool Agregar(Tecnologia Tecnologia)
         {
-            try
+            Tecnologia.Codigo = Guid.NewGuid();
+            using (SQLContexto contexto = new SQLContexto())
             {
-                Tecnologia.Codigo = Guid.NewGuid();
-                return this.tecnologiaRepo.Insertar(Tecnologia);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                TecnologiaRepo tecnologiaRepo = new TecnologiaRepo(contexto);
+                return tecnologiaRepo.Insertar(Tecnologia);
             }
         }
 
         public bool Modificar(Tecnologia Tecnologia)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.tecnologiaRepo.Actualizar(Tecnologia);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                TecnologiaRepo tecnologiaRepo = new TecnologiaRepo(contexto);
+                return tecnologiaRepo.Actualizar(Tecnologia);
             }
         }
 
         public bool Eliminar(string Codigo)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.tecnologiaRepo.Eliminar(new Tecnologia { Codigo = new Guid(Codigo) });
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                TecnologiaRepo tecnologiaRepo = new TecnologiaRepo(contexto);
+                return tecnologiaRepo.Eliminar(new Tecnologia { Codigo = new Guid(Codigo) });
             }
         }
     }

@@ -38,7 +38,7 @@ namespace TF_Mendez_Reclutamiento.ABM
         {
             dgvOficinas.Rows.Clear();
 
-            List<Oficina> oficinas = this.oficinaNegocio.TraerTodo().ToList();
+            List<Oficina> oficinas = this.oficinaNegocio.TraerTodo();
 
             dgvOficinas.ColumnCount = 8;
             dgvOficinas.Columns[0].Name = "Nombre";

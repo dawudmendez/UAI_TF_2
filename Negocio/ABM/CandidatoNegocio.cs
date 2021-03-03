@@ -7,183 +7,251 @@ using Entidad.Negocio;
 using Negocio.Helpers;
 using System;
 using System.Collections.Generic;
+using AccesoDatos.Contexto;
 
 namespace Negocio.ABM
 {
     public class CandidatoNegocio
     {
-        private CandidatoRepo candidatoRepo = new CandidatoRepo();
-        private EducacionRepo educacionRepo = new EducacionRepo();
-        private ExperienciaRepo experienciaRepo = new ExperienciaRepo();
-        private TecnologiaRepo tecnologiaRepo = new TecnologiaRepo();
-
-        public IEnumerable<Candidato> TraerCandidatos()
+        public List<Candidato> TraerCandidatos()
         {
-            return this.candidatoRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                CandidatoRepo candidatoRepo = new CandidatoRepo(contexto);
+                List<Candidato> candidatos = candidatoRepo.TraerTodo();
+
+                foreach (Candidato item in candidatos)
+                {
+                    item.Contacto = this.HidratarContacto(item.Contacto, contexto);
+                    item.Direccion = this.HidratarDireccion(item.Direccion, contexto);
+                }
+
+                return candidatos;
+            }
         }
 
         public Candidato TraerCandidato(string Cuil)
         {
-            return this.candidatoRepo.Traer(new Candidato { Cuil = Cuil });
+            try
+            {
+                using (SQLContexto contexto = new SQLContexto())
+                {
+                    CandidatoRepo candidatoRepo = new CandidatoRepo(contexto);
+                    Candidato candidato = candidatoRepo.Traer(new Candidato { Cuil = Cuil });
+                    candidato.Contacto = this.HidratarContacto(candidato.Contacto, contexto);
+                    candidato.Direccion = this.HidratarDireccion(candidato.Direccion, contexto);
+
+                    return candidato;
+                }                
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
         }
 
         public bool AgregarCandidato(Candidato Candidato)
         {
+            Candidato.Direccion.Codigo = Guid.NewGuid();
+            Candidato.Contacto.Codigo = Guid.NewGuid();
+
             try
             {
-                this.candidatoRepo.Insertar(Candidato);
+                //Si una de las tres operaciones sale mal, se hace rollback de todas las del bloque
+                using (SQLContexto contexto = new SQLContexto())
+                {
+                    CandidatoRepo candidatoRepo = new CandidatoRepo(contexto);
+                    DireccionRepo direccionRepo = new DireccionRepo(contexto);
+                    ContactoRepo contactoRepo = new ContactoRepo(contexto);
+
+                    direccionRepo.Insertar(Candidato.Direccion);
+                    contactoRepo.Insertar(Candidato.Contacto);
+                    candidatoRepo.Insertar(Candidato);
+                }
+
+                return true;
             }
             catch (Exception)
             {
-                return false;
-            }
 
-            return true;
+                throw;
+            }            
         }
 
         public bool ModificarCandidato(Candidato Candidato)
         {
             try
             {
-                this.candidatoRepo.Actualizar(Candidato);
+                //Si una de las tres operaciones sale mal, se hace rollback de todas las del bloque
+                using (SQLContexto contexto = new SQLContexto())
+                {
+                    CandidatoRepo candidatoRepo = new CandidatoRepo(contexto);
+                    DireccionRepo direccionRepo = new DireccionRepo(contexto);
+                    ContactoRepo contactoRepo = new ContactoRepo(contexto);
+
+                    direccionRepo.Actualizar(Candidato.Direccion);
+                    contactoRepo.Actualizar(Candidato.Contacto);
+                    candidatoRepo.Actualizar(Candidato);
+                }
+
+                return true;
             }
             catch (Exception)
             {
-                return false;
-            }
 
-            return true;
+                throw;
+            }
         }
 
         public bool EliminarCandidato(string Cuil)
         {
             try
             {
-                return this.candidatoRepo.Eliminar(new Candidato { Cuil = Cuil });
+                using (SQLContexto contexto = new SQLContexto())
+                {
+                    CandidatoRepo candidatoRepo = new CandidatoRepo(contexto);
+                    DireccionRepo direccionRepo = new DireccionRepo(contexto);
+                    ContactoRepo contactoRepo = new ContactoRepo(contexto);
+
+                    Candidato candidato = candidatoRepo.Traer(new Candidato { Cuil = Cuil });
+
+                    candidatoRepo.Eliminar(candidato);
+                    direccionRepo.Eliminar(candidato.Direccion);
+                    return contactoRepo.Eliminar(candidato.Contacto);
+                }
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
         }
 
-        public IEnumerable<Educacion> TraerEducaciones(string Cuil)
+        public List<Educacion> TraerEducaciones(string Cuil)
         {
-            return this.educacionRepo.TraerPorCandidato(new Candidato { Cuil = Cuil });
+            try
+            {
+                using (SQLContexto contexto = new SQLContexto())
+                {
+                    EducacionRepo educacionRepo = new EducacionRepo(contexto);
+                    return educacionRepo.TraerPorCandidato(new Candidato { Cuil = Cuil });
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }            
         }
 
         public Educacion TraerEducacion(string Codigo)
         {
-            return this.educacionRepo.Traer(new Educacion { Codigo = new Guid(Codigo) });
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                EducacionRepo educacionRepo = new EducacionRepo(contexto);
+                return educacionRepo.Traer(new Educacion { Codigo = new Guid(Codigo) });
+            }
         }
 
         public bool AgregarEducacion(Educacion Educacion)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.educacionRepo.Insertar(Educacion);
+                EducacionRepo educacionRepo = new EducacionRepo(contexto);
+                return educacionRepo.Insertar(Educacion);
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public bool ModificarEducacion(Educacion Educacion)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.educacionRepo.Actualizar(Educacion);
+                EducacionRepo educacionRepo = new EducacionRepo(contexto);
+                return educacionRepo.Actualizar(Educacion);
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public bool EliminarEducacion(string Codigo)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.educacionRepo.Eliminar(new Educacion { Codigo = new Guid(Codigo) });
-            }
-            catch (Exception)
-            {
-                return false;
+                EducacionRepo educacionRepo = new EducacionRepo(contexto);
+                return educacionRepo.Eliminar(new Educacion { Codigo = new Guid(Codigo) });
             }
         }
 
-        public IEnumerable<Experiencia> TraerExperiencias(string Cuil)
+        public List<Experiencia> TraerExperiencias(string Cuil)
         {
-            return this.experienciaRepo.TraerPorCandidato(new Candidato { Cuil = Cuil });
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                ExperienciaRepo experienciaRepo = new ExperienciaRepo(contexto);
+                return experienciaRepo.TraerPorCandidato(new Candidato { Cuil = Cuil });
+            }
         }
 
         public Experiencia TraerExperiencia(string Codigo)
         {
-            return this.experienciaRepo.Traer(new Experiencia { Codigo = new Guid(Codigo) });
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                ExperienciaRepo experienciaRepo = new ExperienciaRepo(contexto);
+                return experienciaRepo.Traer(new Experiencia { Codigo = new Guid(Codigo) });
+            }
         }
 
         public bool AgregarExperiencia(Experiencia Experiencia)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.experienciaRepo.Insertar(Experiencia);
+                ExperienciaRepo experienciaRepo = new ExperienciaRepo(contexto);
+                return experienciaRepo.Insertar(Experiencia);
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public bool ModificarExperiencia(Experiencia Experiencia)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.experienciaRepo.Actualizar(Experiencia);
+                ExperienciaRepo experienciaRepo = new ExperienciaRepo(contexto);
+                return experienciaRepo.Actualizar(Experiencia);
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public bool EliminarExperiencia(string Codigo)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.experienciaRepo.Eliminar(new Experiencia { Codigo = new Guid(Codigo) });
-            }
-            catch (Exception)
-            {
-                return false;
+                ExperienciaRepo experienciaRepo = new ExperienciaRepo(contexto);
+                return experienciaRepo.Eliminar(new Experiencia { Codigo = new Guid(Codigo) });
             }
         }
 
-        public IEnumerable<Tecnologia> TraerTecnologias()
+        public List<Tecnologia> TraerTecnologias()
         {
-            return this.tecnologiaRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                TecnologiaRepo tecnologiaRepo = new TecnologiaRepo(contexto);
+                return tecnologiaRepo.TraerTodo();
+            }
         }
 
         public bool AgregarTecnologia(Tecnologia Tecnologia)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.tecnologiaRepo.Insertar(Tecnologia);
+                TecnologiaRepo tecnologiaRepo = new TecnologiaRepo(contexto);
+                return tecnologiaRepo.Insertar(Tecnologia);
             }
-            catch (Exception)
-            {
-                return false;
-            }
+        }
 
-            return true;
+        private Contacto HidratarContacto(Contacto contacto, IDBContexto contexto)
+        {
+            ContactoRepo contactoRepo = new ContactoRepo(contexto);
+            return contactoRepo.Traer(contacto);
+        }
+
+        private Direccion HidratarDireccion(Direccion direccion, IDBContexto contexto)
+        {
+            DireccionRepo direccionRepo = new DireccionRepo(contexto);
+            return direccionRepo.Traer(direccion);
         }
 
     }

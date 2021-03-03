@@ -11,7 +11,7 @@ namespace AccesoDatos.Interfaces
     interface IRepositorio<T> where T : IEntidad
     {
         T Traer(T Entidad);
-        IEnumerable<T> TraerTodo();
+        List<T> TraerTodo();
         bool Insertar(T Entidad);
         bool Actualizar(T Entidad);
         bool Eliminar(T Entidad);

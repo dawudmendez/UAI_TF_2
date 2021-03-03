@@ -49,7 +49,7 @@ namespace TF_Mendez_Reclutamiento.ABM
 
         private void CargarComboBoxes()
         {
-            cboOficinaPrincipal.DataSource = this.oficinaNegocio.TraerTodo().ToList();
+            cboOficinaPrincipal.DataSource = this.oficinaNegocio.TraerTodo();
 
             cboOficinaPrincipal.DisplayMember = "nombre";
             cboOficinaPrincipal.ValueMember = "nombre";

@@ -16,9 +16,6 @@ namespace AccesoDatos.Repositorios
 {
     public class EntrevistaRepo : Repositorio<Entrevista>
     {
-        private ProcesoSeleccionRepo ProcesoSeleccionRepo = new ProcesoSeleccionRepo();
-        private UsuarioRepo UsuarioRepo = new UsuarioRepo();
-
         protected override string SPTraerTodo { get; set; } = "sp_entrevista_traer";
         protected override string SPTraerUno { get; set; } = "sp_entrevista_traeruno";
         protected override string SPActualizar { get; set; } = "sp_entrevista_actualizar";
@@ -26,18 +23,24 @@ namespace AccesoDatos.Repositorios
         protected override string SPEliminar { get; set; } = "sp_entrevista_eliminar";
         private string SPTraerPorProceso { get; set; } = "sp_entrevista_traer_por_proceso";
 
-        public IEnumerable<Entrevista> TraerPorProceso(ProcesoSeleccion Proceso)
+        public EntrevistaRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
+
+        public List<Entrevista> TraerPorProceso(ProcesoSeleccion Proceso)
         {
             DataTable data = this.contexto.EjecutarQuery(SPTraerPorProceso, this.PrepararParametros(EAccion.TraerPorProceso, new Entrevista { ProcesoSeleccion = Proceso }));
+
+            List<Entrevista> lista = new List<Entrevista>();
 
             foreach (DataRow row in data.Rows)
             {
                 Entrevista entidad = this.MapearDataRow(row);
-
-                yield return entidad;
+                lista.Add(entidad);
             }
 
-            yield return default;
+            return lista;
         }
 
         protected override SqlParameter[] PrepararParametros(EAccion Accion, Entrevista Entidad, int Elemento = 0)
@@ -112,8 +115,8 @@ namespace AccesoDatos.Repositorios
             entre.Codigo = new Guid(Row["id"].ToString());
             entre.Descripcion = Row["descripcion"].ToString();
             entre.TipoEntrevista = (ETipoEntrevista)Enum.Parse(typeof(ETipoEntrevista), Row["tipoentrevista"].ToString(), true);
-            entre.ProcesoSeleccion = this.ProcesoSeleccionRepo.Traer(new ProcesoSeleccion { Codigo = new Guid(Row["id_proceso_seleccion"].ToString()) });
-            entre.Entrevistador = this.UsuarioRepo.Traer(new Usuario { Legajo = Row["legajo_entrevistador"].ToString() });
+            entre.ProcesoSeleccion = new ProcesoSeleccion { Codigo = new Guid(Row["id_proceso_seleccion"].ToString()) };
+            entre.Entrevistador = new Usuario { Legajo = Row["legajo_entrevistador"].ToString() };
             entre.Orden = Convert.ToInt32(Row["orden"].ToString());
             entre.Estado = (EEstadoEntrevista)Enum.Parse(typeof(EEstadoEntrevista), Row["estado"].ToString(), true);
             entre.Comentarios = Row["comentarios"].ToString();

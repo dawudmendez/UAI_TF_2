@@ -8,24 +8,64 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Contexto
 {
-    public class SQLContexto : IDBContexto
+    public class SQLContexto : IDBContexto, IDisposable
     {
-        private SqlConnection Conexion;
+        private SqlConnection conexion;
+        private SqlCommand comando;
+        private bool conectado = false;
+        private bool disposedValue;
 
-        private void Conectar()
+        public SQLContexto()
         {
-            Conexion = new SqlConnection("Server=localhost;Database=SGRP;User Id=SGRP_dbo;Password=1234;");
-            Conexion.Open();
+            this.Conectar();
+            this.IniciarTransaccion();
         }
 
-        private void Desconectar()
+        public void Conectar()
         {
-            if (Conexion != null)
+            if (!this.conectado)
             {
-                Conexion.Close();
-                Conexion.Dispose();
+                this.conexion = new SqlConnection("Server=localhost;Database=SGRP;User Id=SGRP_dbo;Password=1234;");
+                this.conexion.Open();
+                this.conectado = true;
+            }            
+        }
+
+        public void IniciarTransaccion()
+        {
+            if (this.comando == null)
+            {
+                this.comando = new SqlCommand();
+                this.comando.Transaction = this.conexion.BeginTransaction();
+            }
+        }
+
+        public void CommitTransaccion()
+        {
+            if (this.comando != null)
+                this.comando.Transaction?.Commit();
+        }
+
+        public void RollbackTransaction()
+        {
+            if (this.comando != null)
+                this.comando.Transaction?.Rollback();
+        }
+
+        public void Desconectar()
+        {
+            if (this.conexion != null)
+            {
+                this.conexion.Close();
+                this.conexion.Dispose();
+                this.conectado = false;
             }
 
+            if (this.comando != null)
+            {
+                this.comando.Dispose();
+                this.comando = null;
+            }                
         }
 
         public DataTable EjecutarQuery(string StoredProcedure, params SqlParameter[] Parametros)
@@ -37,10 +77,12 @@ namespace AccesoDatos.Contexto
 
             try
             {
-                Conectar();
-                Comando.Connection = Conexion;
+                Comando.Connection = this.conexion;
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.CommandText = StoredProcedure;
+
+                if (this.comando != null)
+                    Comando.Transaction = this.comando.Transaction;
 
                 foreach (SqlParameter par in Parametros)
                     Comando.Parameters.Add(par);
@@ -53,13 +95,9 @@ namespace AccesoDatos.Contexto
             }
             catch (SqlException ex)
             {
-                if (Comando.Transaction != null)
-                {
-                    Comando.Transaction.Rollback();
-                }
-
+                this.Rollback();
                 switch (ex.Number)
-                {
+                {                    
                     case 547:
                         throw new InvalidOperationException("Este registro se encuentra asociado a otro", ex);
 
@@ -71,18 +109,10 @@ namespace AccesoDatos.Contexto
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                if (Comando.Transaction != null)
-                {
-                    Comando.Transaction.Rollback();
-                }
-
-                throw ex;
-            }
-            finally
-            {
-                this.Desconectar();
+                this.Rollback();
+                throw;
             }
 
             return DataTable;
@@ -91,31 +121,25 @@ namespace AccesoDatos.Contexto
         public void EjecutarNoQuery(string StoredProcedure, params SqlParameter[] Parametros)
         {
             SqlCommand Comando = new SqlCommand();
-            DataTable DataTable = new DataTable();
-            SqlDataAdapter DataAdapter = new SqlDataAdapter();
 
             try
             {
-                this.Conectar();
-                Comando.Connection = Conexion;
+                Comando.Connection = this.conexion;
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.CommandText = StoredProcedure;
-                Comando.Transaction = Conexion.BeginTransaction();
+
+                if (this.comando != null)
+                    Comando.Transaction = this.comando.Transaction;
 
                 foreach (SqlParameter par in Parametros)
                     Comando.Parameters.Add(par);
 
                 Comando.ExecuteNonQuery();
-                Comando.Transaction.Commit();
                 Comando.Dispose();
             }
             catch (SqlException ex)
             {
-                if (Comando.Transaction != null)
-                {
-                    Comando.Transaction.Rollback();
-                }
-
+                this.Rollback();
                 var switchExpr = ex.Number;
                 switch (switchExpr)
                 {
@@ -129,19 +153,55 @@ namespace AccesoDatos.Contexto
                         throw new InvalidOperationException("Operación inválida", ex);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                if (Comando.Transaction != null)
+                this.Rollback();
+                throw;
+            }
+        }
+
+        public void Finalizar()
+        {
+            this.CommitTransaccion();
+            this.Desconectar();
+        }
+
+        public void Rollback()
+        {
+            this.RollbackTransaction();
+            this.Desconectar();
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
                 {
-                    Comando.Transaction.Rollback();
+                    // TODO: dispose managed state (managed objects)
                 }
 
-                throw ex;
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                // TODO: set large fields to null
+                this.Finalizar();
+
+                this.disposedValue = true;
+                disposedValue = true;
             }
-            finally
-            {
-                this.Desconectar();
-            }
+        }
+
+        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
+        // ~SQLContexto()
+        // {
+        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        //     Dispose(disposing: false);
+        // }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

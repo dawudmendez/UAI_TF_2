@@ -7,61 +7,57 @@ using Entidad.Negocio;
 using Negocio.Helpers;
 using System;
 using System.Collections.Generic;
+using AccesoDatos.Contexto;
 
 namespace Negocio.ABM
 {
     public class PosicionNegocio
     {
-        private PosicionRepo posicionRepo = new PosicionRepo();
-        private EquipoRepo equipoRepo = new EquipoRepo();
-        private PerfilRepo perfilRepo = new PerfilRepo();
-        private OficinaRepo oficinaRepo = new OficinaRepo();
         //private AnalyticsRepo analyticsRepo = new AnalyticsRepo();
 
-        public IEnumerable<Posicion> TraerPosiciones()
+        public List<Posicion> TraerPosiciones()
         {
-            return this.posicionRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                PosicionRepo posicionRepo = new PosicionRepo(contexto);
+                return posicionRepo.TraerTodo();
+            }
         }
 
         public Posicion TraerPosicion(string Codigo)
         {
-            return this.posicionRepo.Traer(new Posicion { Codigo = new Guid(Codigo) });
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                PosicionRepo posicionRepo = new PosicionRepo(contexto);
+                return posicionRepo.Traer(new Posicion { Codigo = new Guid(Codigo) });
+            }
         }
 
         public bool AgregarPosicion(Posicion Posicion)
         {
-            try
+            Posicion.Codigo = Guid.NewGuid();
+            using (SQLContexto contexto = new SQLContexto())
             {
-                Posicion.Codigo = Guid.NewGuid();
-                return this.posicionRepo.Insertar(Posicion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                PosicionRepo posicionRepo = new PosicionRepo(contexto);
+                return posicionRepo.Insertar(Posicion);
             }
         }
 
         public bool ModificarPosicion(Posicion Posicion)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.posicionRepo.Actualizar(Posicion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                PosicionRepo posicionRepo = new PosicionRepo(contexto);
+                return posicionRepo.Actualizar(Posicion);
             }
         }
 
         public bool EliminarPosicion(string Codigo)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.posicionRepo.Eliminar(new Posicion { Codigo = new Guid(Codigo) });
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                PosicionRepo posicionRepo = new PosicionRepo(contexto);
+                return posicionRepo.Eliminar(new Posicion { Codigo = new Guid(Codigo) });
             }
         }
 
@@ -70,19 +66,31 @@ namespace Negocio.ABM
         //    return this.analyticsRepo.TraerCandidatosRecomendados(new Guid(Codigo));
         //}
 
-        public IEnumerable<Equipo> TraerEquipos()
+        public List<Equipo> TraerEquipos()
         {
-            return this.equipoRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                EquipoRepo equipoRepo = new EquipoRepo(contexto);
+                return equipoRepo.TraerTodo();
+            }
         }
 
-        public IEnumerable<Perfil> TraerPerfiles()
+        public List<Perfil> TraerPerfiles()
         {
-            return this.perfilRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                PerfilRepo perfilRepo = new PerfilRepo(contexto);
+                return perfilRepo.TraerTodo();
+            }
         }
 
-        public IEnumerable<Oficina> TraerOficinas()
+        public List<Oficina> TraerOficinas()
         {
-            return this.oficinaRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                OficinaRepo oficinaRepo = new OficinaRepo(contexto);
+                return oficinaRepo.TraerTodo();
+            }
         }
 
     }

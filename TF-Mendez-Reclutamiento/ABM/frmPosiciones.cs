@@ -40,7 +40,7 @@ namespace TF_Mendez_Reclutamiento.ABM
         {
             dgvPosiciones.Rows.Clear();
 
-            List<Posicion> posiciones = this.posicionNegocio.TraerPosiciones().ToList();
+            List<Posicion> posiciones = this.posicionNegocio.TraerPosiciones();
 
             dgvPosiciones.ColumnCount = 7;
             dgvPosiciones.Columns[0].Name = "Código";
@@ -70,9 +70,9 @@ namespace TF_Mendez_Reclutamiento.ABM
 
         private void CargarComboBoxes()
         {
-            cboPerfil.DataSource = this.posicionNegocio.TraerPerfiles().ToList();
-            cboOficina.DataSource = this.posicionNegocio.TraerOficinas().ToList();
-            cboEquipo.DataSource = this.posicionNegocio.TraerEquipos().ToList();
+            cboPerfil.DataSource = this.posicionNegocio.TraerPerfiles();
+            cboOficina.DataSource = this.posicionNegocio.TraerOficinas();
+            cboEquipo.DataSource = this.posicionNegocio.TraerEquipos();
 
             cboPerfil.DisplayMember = "nombre";
             cboPerfil.ValueMember = "codigo";

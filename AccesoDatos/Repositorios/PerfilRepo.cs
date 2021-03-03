@@ -15,8 +15,6 @@ namespace AccesoDatos.Repositorios
 {
     public class PerfilRepo : Repositorio<Perfil>
     {
-        private TecnologiaRepo tecnologiaRepo = new TecnologiaRepo();
-
         protected override string SPTraerTodo { get; set; } = "sp_perfil_traer";
         protected override string SPTraerUno { get; set; } = "sp_perfil_traeruno";
         protected override string SPActualizar { get; set; } = "sp_perfil_actualizar";
@@ -26,18 +24,25 @@ namespace AccesoDatos.Repositorios
         private string SPEliminarTecnologias { get; set; } = "sp_perfil_eliminar_tecnologias";
         private string SPAgregarTecnologia { get; set; } = "sp_perfil_insertar_tecnologia";
 
-        private IEnumerable<Tecnologia> TraerTecnologias(Perfil Perfil)
+        public PerfilRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
+
+        private List<Tecnologia> TraerTecnologias(Perfil Perfil)
         {
             DataTable data = this.contexto.EjecutarQuery(SPTraerTecnologias, this.PrepararParametros(EAccion.TraerTecnologias, Perfil));
 
+            List<Tecnologia> lista = new List<Tecnologia>();
+
             foreach (DataRow row in data.Rows)
             {
-                Tecnologia entidad = this.tecnologiaRepo.MapearDataRow(row);
-
-                yield return entidad;
+                //Tecnologia entidad = this.tecnologiaRepo.MapearDataRow(row);
+                Tecnologia entidad = null;
+                lista.Add(entidad);
             }
 
-            yield break;
+            return lista;
         }
 
         public new bool Insertar(Perfil Entidad)
@@ -129,7 +134,7 @@ namespace AccesoDatos.Repositorios
             perf.Nombre = Row["nombre"].ToString();
             perf.Categoria = (ECategoria)Enum.Parse(typeof(ECategoria), Row["categoria"].ToString(), true);
             perf.AniosExperiencia = Convert.ToInt32(Row["aniosexperiencia"].ToString());
-            perf.Tecnologias = this.TraerTecnologias(perf).ToList();
+            perf.Tecnologias = this.TraerTecnologias(perf);
 
             return perf;
         }

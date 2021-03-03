@@ -6,7 +6,6 @@ C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamient
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\Entidades\obj\Debug\Entidad.pdb
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\Entidades\bin\Debug\Entidad.dll
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\Entidades\bin\Debug\Entidad.pdb
-C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\Entidades\obj\Debug\Entidad.dll
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\Entidades\obj\Debug\Entidad.pdb

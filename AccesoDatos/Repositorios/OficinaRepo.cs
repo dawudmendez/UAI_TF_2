@@ -15,14 +15,16 @@ namespace AccesoDatos.Repositorios
 {
     public class OficinaRepo : Repositorio<Oficina>
     {
-        private DireccionRepo DireccionRepo = new DireccionRepo();
-        private ContactoRepo ContactoRepo = new ContactoRepo();        
-
         protected override string SPTraerTodo { get; set; } = "sp_oficina_traer";
         protected override string SPTraerUno { get; set; } = "sp_oficina_traeruno";
         protected override string SPActualizar { get; set; } = "sp_oficina_actualizar";
         protected override string SPInsertar { get; set; } = "sp_oficina_insertar";
         protected override string SPEliminar { get; set; } = "sp_oficina_eliminar";
+
+        public OficinaRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
 
         protected override SqlParameter[] PrepararParametros(EAccion Accion, Oficina Entidad, int Elemento = 0)
         {
@@ -66,8 +68,8 @@ namespace AccesoDatos.Repositorios
             Oficina ofi = new Oficina();
 
             ofi.Nombre = Row["nombre"].ToString();
-            ofi.Direccion = this.DireccionRepo.Traer(new Direccion { Codigo = new Guid(Row["codigo_direccion"].ToString()) });
-            ofi.Contacto = this.ContactoRepo.Traer(new Contacto { Codigo = new Guid(Row["codigo_contacto"].ToString()) });
+            ofi.Direccion = new Direccion { Codigo = new Guid(Row["codigo_direccion"].ToString()) };
+            ofi.Contacto = new Contacto { Codigo = new Guid(Row["codigo_contacto"].ToString()) };
 
             return ofi;
         }

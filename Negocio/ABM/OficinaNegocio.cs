@@ -5,25 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidad.Negocio;
 using AccesoDatos.Repositorios;
+using AccesoDatos.Contexto;
 
 namespace Negocio.ABM
 {
     public class OficinaNegocio
     {
-        private OficinaRepo oficinaRepo = new OficinaRepo();
-        private DireccionRepo direccionRepo = new DireccionRepo();
-        private ContactoRepo contactoRepo = new ContactoRepo();
-
-        public IEnumerable<Oficina> TraerTodo()
+        public List<Oficina> TraerTodo()
         {
-            return this.oficinaRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                OficinaRepo oficinaRepo = new OficinaRepo(contexto);
+                return oficinaRepo.TraerTodo();
+            }
         }
 
         public Oficina Traer(string Nombre)
         {
-            Oficina oficina = new Oficina();
-            oficina.Nombre = Nombre;
-            return this.oficinaRepo.Traer(oficina);
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                OficinaRepo oficinaRepo = new OficinaRepo(contexto);
+                Oficina oficina = new Oficina();
+                oficina.Nombre = Nombre;
+                return oficinaRepo.Traer(oficina);
+            }            
         }
 
         public bool Agregar(Oficina Oficina)
@@ -31,43 +36,38 @@ namespace Negocio.ABM
             Oficina.Direccion.Codigo = Guid.NewGuid();
             Oficina.Contacto.Codigo = Guid.NewGuid();
 
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.direccionRepo.Insertar(Oficina.Direccion);
-                this.contactoRepo.Insertar(Oficina.Contacto);
-                this.oficinaRepo.Insertar(Oficina);
-            }
-            catch (Exception)
-            {
-                this.direccionRepo.Eliminar(Oficina.Direccion);
-                this.contactoRepo.Eliminar(Oficina.Contacto);
+                OficinaRepo oficinaRepo = new OficinaRepo(contexto);
+                DireccionRepo direccionRepo = new DireccionRepo(contexto);
+                ContactoRepo contactoRepo = new ContactoRepo(contexto);
 
-                return false;
+                direccionRepo.Insertar(Oficina.Direccion);
+                contactoRepo.Insertar(Oficina.Contacto);
+                return oficinaRepo.Insertar(Oficina);
             }
-            
-
-            return true;
         }
 
         public bool Modificar(Oficina Oficina)
         {
-            this.direccionRepo.Actualizar(Oficina.Direccion);
-            this.contactoRepo.Actualizar(Oficina.Contacto);
-            this.oficinaRepo.Actualizar(Oficina);
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                OficinaRepo oficinaRepo = new OficinaRepo(contexto);
+                DireccionRepo direccionRepo = new DireccionRepo(contexto);
+                ContactoRepo contactoRepo = new ContactoRepo(contexto);
 
-            return true;
+                direccionRepo.Actualizar(Oficina.Direccion);
+                contactoRepo.Actualizar(Oficina.Contacto);
+                return oficinaRepo.Actualizar(Oficina);
+            }
         }
 
         public bool Eliminar(string Nombre)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.oficinaRepo.Eliminar(new Oficina { Nombre = Nombre });
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
+                OficinaRepo oficinaRepo = new OficinaRepo(contexto);
+                return oficinaRepo.Eliminar(new Oficina { Nombre = Nombre });
             }
         }
     }

@@ -7,161 +7,115 @@ using Entidad.Negocio;
 using Negocio.Helpers;
 using System;
 using System.Collections.Generic;
+using AccesoDatos.Contexto;
 
 namespace Negocio.ABM
 {
     public class ProcesoSeleccionNegocio
     {
-        private ProcesoSeleccionRepo procesoSeleccionRepo = new ProcesoSeleccionRepo();
-        private UsuarioRepo usuarioRepo = new UsuarioRepo();
-        private PosicionRepo posicionRepo = new PosicionRepo();
-        private EntrevistaRepo entrevistaRepo = new EntrevistaRepo();
-        private CandidatoRepo candidatoRepo = new CandidatoRepo();
-
-        public IEnumerable<ProcesoSeleccion> TraerProcesosSeleccion()
+        public List<ProcesoSeleccion> TraerProcesosSeleccion()
         {
-            return this.procesoSeleccionRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                ProcesoSeleccionRepo procesoSeleccionRepo = new ProcesoSeleccionRepo(contexto);
+                return procesoSeleccionRepo.TraerTodo();
+            }
         }
 
         public ProcesoSeleccion TraerProcesoSeleccion(string Codigo)
         {
-            ProcesoSeleccion proceso;
-
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                proceso = this.procesoSeleccionRepo.Traer(new ProcesoSeleccion { Codigo = new Guid(Codigo) });
-            }
-            catch (Exception)
-            {
+                ProcesoSeleccionRepo procesoSeleccionRepo = new ProcesoSeleccionRepo(contexto);
 
-                throw;
-            }
+                ProcesoSeleccion proceso = procesoSeleccionRepo.Traer(new ProcesoSeleccion { Codigo = new Guid(Codigo) });
 
-            try
-            {
                 proceso.Reclutador = this.HidratarReclutador(proceso);
                 proceso.Candidato = this.HidratarCandidato(proceso);
                 proceso.Posicion = this.HidratarPosicion(proceso);
-            }
-            catch (Exception)
-            {
 
-                throw;
+                return proceso;
             }
-            
-
-            return proceso;
         }
 
         public bool AgregarProcesoSeleccion(ProcesoSeleccion ProcesoSeleccion)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.procesoSeleccionRepo.Insertar(ProcesoSeleccion);
-            }
-            catch (Exception)
-            {
-                return false;
+                ProcesoSeleccionRepo procesoSeleccionRepo = new ProcesoSeleccionRepo(contexto);
+                return procesoSeleccionRepo.Insertar(ProcesoSeleccion);
             }
         }
 
         public bool ModificarProcesoSeleccion(ProcesoSeleccion ProcesoSeleccion)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.procesoSeleccionRepo.Actualizar(ProcesoSeleccion);
-            }
-            catch (Exception)
-            {
-                return false;
+                ProcesoSeleccionRepo procesoSeleccionRepo = new ProcesoSeleccionRepo(contexto);
+                return procesoSeleccionRepo.Actualizar(ProcesoSeleccion);
             }
         }
 
         public bool EliminarProcesoSeleccion(string Codigo)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.procesoSeleccionRepo.Eliminar(new ProcesoSeleccion { Codigo = new Guid(Codigo) });
-            }
-            catch (Exception)
-            {
-                return false;
+                ProcesoSeleccionRepo procesoSeleccionRepo = new ProcesoSeleccionRepo(contexto);
+                return procesoSeleccionRepo.Eliminar(new ProcesoSeleccion { Codigo = new Guid(Codigo) });
             }
         }
 
         private Candidato HidratarCandidato(ProcesoSeleccion procesoSeleccion)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.candidatoRepo.Traer(procesoSeleccion.Candidato);
-            }
-            catch (Exception)
-            {
-                return null;
+                CandidatoRepo candidatoRepo = new CandidatoRepo(contexto);
+                return candidatoRepo.Traer(procesoSeleccion.Candidato);
             }
         }
 
         private Usuario HidratarReclutador(ProcesoSeleccion procesoSeleccion)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.usuarioRepo.Traer(procesoSeleccion.Reclutador);
-            }
-            catch (Exception)
-            {
-                return null;
+                UsuarioRepo usuarioRepo = new UsuarioRepo(contexto);
+                return usuarioRepo.Traer(procesoSeleccion.Reclutador);
             }
         }
 
         private Posicion HidratarPosicion(ProcesoSeleccion procesoSeleccion)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.posicionRepo.Traer(procesoSeleccion.Posicion);
-            }
-            catch (Exception)
-            {
-                return null;
+                PosicionRepo posicionRepo = new PosicionRepo(contexto);
+                return posicionRepo.Traer(procesoSeleccion.Posicion);
             }
         }
 
         public bool AgregarEntrevista(Entrevista Entrevista)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.entrevistaRepo.Insertar(Entrevista);
+                EntrevistaRepo entrevistaRepo = new EntrevistaRepo(contexto);
+                return entrevistaRepo.Insertar(Entrevista);
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public bool ModificarEntrevista(Entrevista Entrevista)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.entrevistaRepo.Actualizar(Entrevista);
+                EntrevistaRepo entrevistaRepo = new EntrevistaRepo(contexto);
+                return entrevistaRepo.Actualizar(Entrevista);
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public bool EliminarEntrevista(string Codigo)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.entrevistaRepo.Eliminar(new Entrevista { Codigo = new Guid(Codigo) });
-            }
-            catch (Exception)
-            {
-                return false;
+                EntrevistaRepo entrevistaRepo = new EntrevistaRepo(contexto);
+                return entrevistaRepo.Eliminar(new Entrevista { Codigo = new Guid(Codigo) });
             }
         }
 

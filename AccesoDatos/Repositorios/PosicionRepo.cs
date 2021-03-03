@@ -15,15 +15,16 @@ namespace AccesoDatos.Repositorios
 {
     public class PosicionRepo : Repositorio<Posicion>
     {
-        private PerfilRepo PerfilRepo = new PerfilRepo();
-        private EquipoRepo EquipoRepo = new EquipoRepo();
-        private OficinaRepo OficinaRepo = new OficinaRepo();
-
         protected override string SPTraerTodo { get; set; } = "sp_posicion_traer";
         protected override string SPTraerUno { get; set; } = "sp_posicion_traeruno";
         protected override string SPActualizar { get; set; } = "sp_posicion_actualizar";
         protected override string SPInsertar { get; set; } = "sp_posicion_insertar";
         protected override string SPEliminar { get; set; } = "sp_posicion_eliminar";
+
+        public PosicionRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
 
         protected override SqlParameter[] PrepararParametros(EAccion Accion, Posicion Entidad, int Elemento = 0)
         {
@@ -85,10 +86,10 @@ namespace AccesoDatos.Repositorios
             posi.Codigo = new Guid(Row["codigo"].ToString());
             posi.Nombre = Row["nombre"].ToString();
             posi.Descripcion = Row["descripcion"].ToString();
-            posi.Perfil = this.PerfilRepo.Traer(new Perfil { Codigo = new Guid(Row["codigo_perfil"].ToString()) });
-            posi.Equipo = this.EquipoRepo.Traer(new Equipo { Nombre = Row["nombre_equipo"].ToString() });
+            posi.Perfil = new Perfil { Codigo = new Guid(Row["codigo_perfil"].ToString()) };
+            posi.Equipo = new Equipo { Nombre = Row["nombre_equipo"].ToString() };
             posi.Estado = (EEstadoPosicion)Enum.Parse(typeof(EEstadoPosicion), Row["estado"].ToString(), true);
-            posi.Oficina = this.OficinaRepo.Traer(new Oficina { Nombre = Row["nombre_oficina"].ToString() });
+            posi.Oficina = new Oficina { Nombre = Row["nombre_oficina"].ToString() };
 
             return posi;
         }

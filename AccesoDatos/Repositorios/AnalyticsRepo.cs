@@ -14,25 +14,29 @@ namespace AccesoDatos.Repositorios
 {
     public class AnalyticsRepo
     {
-        private SQLContexto contexto = new SQLContexto();
-        private CandidatoRepo candidatoRepo = new CandidatoRepo();
 
         private string SPTraerCandidatosRecomendados { get; set; } = "sp_analytics_traer_candidatos_recomendados";
 
-        public IEnumerable<Candidato> TraerCandidatosRecomendados(Guid CodigoPosicion)
-        {
-            SqlParameter guid = new SqlParameter();
-            guid.ParameterName = "codigo_posicion";
-            guid.Value = CodigoPosicion;
 
-            DataTable data = this.contexto.EjecutarQuery(SPTraerCandidatosRecomendados, guid);
 
-            foreach (DataRow row in data.Rows)
-            {
-                Candidato entidad = candidatoRepo.MapearDataRow(row);
+        //public List<Candidato> TraerCandidatosRecomendados(Guid CodigoPosicion)
+        //{
+        //    SqlParameter guid = new SqlParameter();
+        //    guid.ParameterName = "codigo_posicion";
+        //    guid.Value = CodigoPosicion;
 
-                yield return entidad;
-            }
-        }
+        //    DataTable data = SQLContexto.EjecutarQuery(SPTraerCandidatosRecomendados, guid);
+
+        //    List<Candidato> lista = new List<Candidato>();
+
+        //    foreach (DataRow row in data.Rows)
+        //    {
+        //        Candidato entidad = candidatoRepo.MapearDataRow(row);
+
+        //        lista.Add(entidad);
+        //    }
+
+        //    return lista;
+        //}
     }
 }

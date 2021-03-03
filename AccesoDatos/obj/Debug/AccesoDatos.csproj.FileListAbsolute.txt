@@ -7,12 +7,12 @@ C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamient
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\AccesoDatos\obj\Debug\AccesoDatos.csproj.CopyComplete
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\AccesoDatos\obj\Debug\AccesoDatos.dll
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\AccesoDatos\obj\Debug\AccesoDatos.pdb
+C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\AccesoDatos\obj\Debug\AccesoDatos.csprojAssemblyReference.cache
+C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\AccesoDatos\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\AccesoDatos\bin\Debug\AccesoDatos.dll
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\AccesoDatos\bin\Debug\AccesoDatos.pdb
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\AccesoDatos\bin\Debug\Entidad.dll
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\AccesoDatos\bin\Debug\Entidad.pdb
-C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\AccesoDatos\obj\Debug\AccesoDatos.csprojAssemblyReference.cache
-C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\AccesoDatos\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\AccesoDatos\obj\Debug\AccesoDatos.csproj.CopyComplete
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\AccesoDatos\obj\Debug\AccesoDatos.dll
 C:\Users\dawud\Dropbox\UAI\Final Trabajo Final 2020\TF2.0\TF-Mendez-Reclutamiento\UAI_TF_2\AccesoDatos\obj\Debug\AccesoDatos.pdb

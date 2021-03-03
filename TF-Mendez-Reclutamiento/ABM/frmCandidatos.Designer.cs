@@ -32,8 +32,8 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.panelCandidato = new System.Windows.Forms.Panel();
             this.btnCandSiguiente = new System.Windows.Forms.Button();
             this.label42 = new System.Windows.Forms.Label();
-            this.txtCandCancelar = new System.Windows.Forms.Button();
-            this.txtCandGuardar = new System.Windows.Forms.Button();
+            this.btnCandCancelar = new System.Windows.Forms.Button();
+            this.btnCandGuardar = new System.Windows.Forms.Button();
             this.btnCandAgregar = new System.Windows.Forms.Button();
             this.btnCandEliminar = new System.Windows.Forms.Button();
             this.btnCandEditar = new System.Windows.Forms.Button();
@@ -86,13 +86,13 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnNuevaTecnologia = new System.Windows.Forms.Button();
             this.dgvTecnologias = new System.Windows.Forms.DataGridView();
             this.label43 = new System.Windows.Forms.Label();
-            this.cboCategoria = new System.Windows.Forms.ComboBox();
+            this.cboExpCategoria = new System.Windows.Forms.ComboBox();
             this.btnExpCancelar = new System.Windows.Forms.Button();
             this.btnExpGuardar = new System.Windows.Forms.Button();
             this.btnExpAgregar = new System.Windows.Forms.Button();
             this.btnExpEliminar = new System.Windows.Forms.Button();
             this.btnExpEditar = new System.Windows.Forms.Button();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.txtExpDescripcion = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -100,14 +100,15 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.txtFechaHasta = new System.Windows.Forms.TextBox();
-            this.txtFechaDesde = new System.Windows.Forms.TextBox();
+            this.txtExpFechaHasta = new System.Windows.Forms.TextBox();
+            this.txtExpFechaDesde = new System.Windows.Forms.TextBox();
             this.txtExpPuesto = new System.Windows.Forms.TextBox();
             this.txtExpEmpresa = new System.Windows.Forms.TextBox();
             this.txtExpCodigo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvExperiencia = new System.Windows.Forms.DataGridView();
             this.panelEducacion = new System.Windows.Forms.Panel();
+            this.cboEduEstado = new System.Windows.Forms.ComboBox();
             this.btnEduFinalizar = new System.Windows.Forms.Button();
             this.cboEduRubro = new System.Windows.Forms.ComboBox();
             this.cboEduTipoCarrera = new System.Windows.Forms.ComboBox();
@@ -121,7 +122,6 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
-            this.txtEduEstado = new System.Windows.Forms.TextBox();
             this.txtEduFechaInicio = new System.Windows.Forms.TextBox();
             this.txtEduDuracion = new System.Windows.Forms.TextBox();
             this.txtEduCarrera = new System.Windows.Forms.TextBox();
@@ -148,8 +148,8 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.panelCandidato.AutoScroll = true;
             this.panelCandidato.Controls.Add(this.btnCandSiguiente);
             this.panelCandidato.Controls.Add(this.label42);
-            this.panelCandidato.Controls.Add(this.txtCandCancelar);
-            this.panelCandidato.Controls.Add(this.txtCandGuardar);
+            this.panelCandidato.Controls.Add(this.btnCandCancelar);
+            this.panelCandidato.Controls.Add(this.btnCandGuardar);
             this.panelCandidato.Controls.Add(this.btnCandAgregar);
             this.panelCandidato.Controls.Add(this.btnCandEliminar);
             this.panelCandidato.Controls.Add(this.btnCandEditar);
@@ -224,25 +224,27 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.label42.TabIndex = 153;
             this.label42.Text = "Candidatos";
             // 
-            // txtCandCancelar
+            // btnCandCancelar
             // 
-            this.txtCandCancelar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCandCancelar.Location = new System.Drawing.Point(236, 589);
-            this.txtCandCancelar.Name = "txtCandCancelar";
-            this.txtCandCancelar.Size = new System.Drawing.Size(102, 46);
-            this.txtCandCancelar.TabIndex = 101;
-            this.txtCandCancelar.Text = "Cancelar";
-            this.txtCandCancelar.UseVisualStyleBackColor = true;
+            this.btnCandCancelar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCandCancelar.Location = new System.Drawing.Point(236, 589);
+            this.btnCandCancelar.Name = "btnCandCancelar";
+            this.btnCandCancelar.Size = new System.Drawing.Size(102, 46);
+            this.btnCandCancelar.TabIndex = 101;
+            this.btnCandCancelar.Text = "Cancelar";
+            this.btnCandCancelar.UseVisualStyleBackColor = true;
+            this.btnCandCancelar.Click += new System.EventHandler(this.btnCandCancelar_Click);
             // 
-            // txtCandGuardar
+            // btnCandGuardar
             // 
-            this.txtCandGuardar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCandGuardar.Location = new System.Drawing.Point(128, 589);
-            this.txtCandGuardar.Name = "txtCandGuardar";
-            this.txtCandGuardar.Size = new System.Drawing.Size(102, 46);
-            this.txtCandGuardar.TabIndex = 100;
-            this.txtCandGuardar.Text = "Guardar";
-            this.txtCandGuardar.UseVisualStyleBackColor = true;
+            this.btnCandGuardar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCandGuardar.Location = new System.Drawing.Point(128, 589);
+            this.btnCandGuardar.Name = "btnCandGuardar";
+            this.btnCandGuardar.Size = new System.Drawing.Size(102, 46);
+            this.btnCandGuardar.TabIndex = 100;
+            this.btnCandGuardar.Text = "Guardar";
+            this.btnCandGuardar.UseVisualStyleBackColor = true;
+            this.btnCandGuardar.Click += new System.EventHandler(this.btnCandGuardar_Click);
             // 
             // btnCandAgregar
             // 
@@ -253,6 +255,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnCandAgregar.TabIndex = 99;
             this.btnCandAgregar.Text = "Agregar";
             this.btnCandAgregar.UseVisualStyleBackColor = true;
+            this.btnCandAgregar.Click += new System.EventHandler(this.btnCandAgregar_Click);
             // 
             // btnCandEliminar
             // 
@@ -263,6 +266,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnCandEliminar.TabIndex = 98;
             this.btnCandEliminar.Text = "Eliminar";
             this.btnCandEliminar.UseVisualStyleBackColor = true;
+            this.btnCandEliminar.Click += new System.EventHandler(this.btnCandEliminar_Click);
             // 
             // btnCandEditar
             // 
@@ -273,6 +277,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnCandEditar.TabIndex = 97;
             this.btnCandEditar.Text = "Editar";
             this.btnCandEditar.UseVisualStyleBackColor = true;
+            this.btnCandEditar.Click += new System.EventHandler(this.btnCandEditar_Click);
             // 
             // txtDirCodigoPostal
             // 
@@ -675,6 +680,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.dgvCandidatos.Name = "dgvCandidatos";
             this.dgvCandidatos.Size = new System.Drawing.Size(750, 226);
             this.dgvCandidatos.TabIndex = 0;
+            this.dgvCandidatos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCandidatos_CellMouseDoubleClick);
             // 
             // panelExperiencia
             // 
@@ -683,13 +689,13 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.panelExperiencia.Controls.Add(this.btnNuevaTecnologia);
             this.panelExperiencia.Controls.Add(this.dgvTecnologias);
             this.panelExperiencia.Controls.Add(this.label43);
-            this.panelExperiencia.Controls.Add(this.cboCategoria);
+            this.panelExperiencia.Controls.Add(this.cboExpCategoria);
             this.panelExperiencia.Controls.Add(this.btnExpCancelar);
             this.panelExperiencia.Controls.Add(this.btnExpGuardar);
             this.panelExperiencia.Controls.Add(this.btnExpAgregar);
             this.panelExperiencia.Controls.Add(this.btnExpEliminar);
             this.panelExperiencia.Controls.Add(this.btnExpEditar);
-            this.panelExperiencia.Controls.Add(this.txtDescripcion);
+            this.panelExperiencia.Controls.Add(this.txtExpDescripcion);
             this.panelExperiencia.Controls.Add(this.label26);
             this.panelExperiencia.Controls.Add(this.label27);
             this.panelExperiencia.Controls.Add(this.label28);
@@ -697,8 +703,8 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.panelExperiencia.Controls.Add(this.label30);
             this.panelExperiencia.Controls.Add(this.label31);
             this.panelExperiencia.Controls.Add(this.label32);
-            this.panelExperiencia.Controls.Add(this.txtFechaHasta);
-            this.panelExperiencia.Controls.Add(this.txtFechaDesde);
+            this.panelExperiencia.Controls.Add(this.txtExpFechaHasta);
+            this.panelExperiencia.Controls.Add(this.txtExpFechaDesde);
             this.panelExperiencia.Controls.Add(this.txtExpPuesto);
             this.panelExperiencia.Controls.Add(this.txtExpEmpresa);
             this.panelExperiencia.Controls.Add(this.txtExpCodigo);
@@ -750,14 +756,14 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.label43.TabIndex = 172;
             this.label43.Text = "Tecnologías";
             // 
-            // cboCategoria
+            // cboExpCategoria
             // 
-            this.cboCategoria.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cboCategoria.FormattingEnabled = true;
-            this.cboCategoria.Location = new System.Drawing.Point(107, 349);
-            this.cboCategoria.Name = "cboCategoria";
-            this.cboCategoria.Size = new System.Drawing.Size(208, 21);
-            this.cboCategoria.TabIndex = 171;
+            this.cboExpCategoria.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cboExpCategoria.FormattingEnabled = true;
+            this.cboExpCategoria.Location = new System.Drawing.Point(107, 349);
+            this.cboExpCategoria.Name = "cboExpCategoria";
+            this.cboExpCategoria.Size = new System.Drawing.Size(208, 21);
+            this.cboExpCategoria.TabIndex = 171;
             // 
             // btnExpCancelar
             // 
@@ -809,14 +815,14 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.btnExpEditar.Text = "Editar";
             this.btnExpEditar.UseVisualStyleBackColor = true;
             // 
-            // txtDescripcion
+            // txtExpDescripcion
             // 
-            this.txtDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDescripcion.Location = new System.Drawing.Point(17, 451);
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(298, 219);
-            this.txtDescripcion.TabIndex = 165;
+            this.txtExpDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtExpDescripcion.Location = new System.Drawing.Point(17, 451);
+            this.txtExpDescripcion.Multiline = true;
+            this.txtExpDescripcion.Name = "txtExpDescripcion";
+            this.txtExpDescripcion.Size = new System.Drawing.Size(298, 219);
+            this.txtExpDescripcion.TabIndex = 165;
             // 
             // label26
             // 
@@ -888,21 +894,21 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.label32.TabIndex = 158;
             this.label32.Text = "Categoría";
             // 
-            // txtFechaHasta
+            // txtExpFechaHasta
             // 
-            this.txtFechaHasta.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtFechaHasta.Location = new System.Drawing.Point(107, 402);
-            this.txtFechaHasta.Name = "txtFechaHasta";
-            this.txtFechaHasta.Size = new System.Drawing.Size(208, 20);
-            this.txtFechaHasta.TabIndex = 157;
+            this.txtExpFechaHasta.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtExpFechaHasta.Location = new System.Drawing.Point(107, 402);
+            this.txtExpFechaHasta.Name = "txtExpFechaHasta";
+            this.txtExpFechaHasta.Size = new System.Drawing.Size(208, 20);
+            this.txtExpFechaHasta.TabIndex = 157;
             // 
-            // txtFechaDesde
+            // txtExpFechaDesde
             // 
-            this.txtFechaDesde.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtFechaDesde.Location = new System.Drawing.Point(107, 376);
-            this.txtFechaDesde.Name = "txtFechaDesde";
-            this.txtFechaDesde.Size = new System.Drawing.Size(208, 20);
-            this.txtFechaDesde.TabIndex = 156;
+            this.txtExpFechaDesde.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtExpFechaDesde.Location = new System.Drawing.Point(107, 376);
+            this.txtExpFechaDesde.Name = "txtExpFechaDesde";
+            this.txtExpFechaDesde.Size = new System.Drawing.Size(208, 20);
+            this.txtExpFechaDesde.TabIndex = 156;
             // 
             // txtExpPuesto
             // 
@@ -951,6 +957,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             // panelEducacion
             // 
             this.panelEducacion.AutoScroll = true;
+            this.panelEducacion.Controls.Add(this.cboEduEstado);
             this.panelEducacion.Controls.Add(this.btnEduFinalizar);
             this.panelEducacion.Controls.Add(this.cboEduRubro);
             this.panelEducacion.Controls.Add(this.cboEduTipoCarrera);
@@ -964,7 +971,6 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.panelEducacion.Controls.Add(this.label39);
             this.panelEducacion.Controls.Add(this.label40);
             this.panelEducacion.Controls.Add(this.label41);
-            this.panelEducacion.Controls.Add(this.txtEduEstado);
             this.panelEducacion.Controls.Add(this.txtEduFechaInicio);
             this.panelEducacion.Controls.Add(this.txtEduDuracion);
             this.panelEducacion.Controls.Add(this.txtEduCarrera);
@@ -981,6 +987,15 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.panelEducacion.Name = "panelEducacion";
             this.panelEducacion.Size = new System.Drawing.Size(787, 745);
             this.panelEducacion.TabIndex = 2;
+            // 
+            // cboEduEstado
+            // 
+            this.cboEduEstado.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cboEduEstado.FormattingEnabled = true;
+            this.cboEduEstado.Location = new System.Drawing.Point(105, 485);
+            this.cboEduEstado.Name = "cboEduEstado";
+            this.cboEduEstado.Size = new System.Drawing.Size(208, 21);
+            this.cboEduEstado.TabIndex = 178;
             // 
             // btnEduFinalizar
             // 
@@ -1108,14 +1123,6 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.label41.TabIndex = 164;
             this.label41.Text = "Código";
             // 
-            // txtEduEstado
-            // 
-            this.txtEduEstado.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtEduEstado.Location = new System.Drawing.Point(105, 485);
-            this.txtEduEstado.Name = "txtEduEstado";
-            this.txtEduEstado.Size = new System.Drawing.Size(208, 20);
-            this.txtEduEstado.TabIndex = 163;
-            // 
             // txtEduFechaInicio
             // 
             this.txtEduFechaInicio.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -1236,6 +1243,7 @@ namespace TF_Mendez_Reclutamiento.ABM
             this.Controls.Add(this.panelCandidato);
             this.Name = "frmCandidatos";
             this.Text = "frmCandidatos";
+            this.Load += new System.EventHandler(this.frmCandidatos_Load);
             this.panelCandidato.ResumeLayout(false);
             this.panelCandidato.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCandidatos)).EndInit();
@@ -1297,20 +1305,20 @@ namespace TF_Mendez_Reclutamiento.ABM
         private System.Windows.Forms.TextBox txtCandNombre;
         private System.Windows.Forms.TextBox txtCandDNI;
         private System.Windows.Forms.TextBox txtCandCUIL;
-        private System.Windows.Forms.Button txtCandCancelar;
-        private System.Windows.Forms.Button txtCandGuardar;
+        private System.Windows.Forms.Button btnCandCancelar;
+        private System.Windows.Forms.Button btnCandGuardar;
         private System.Windows.Forms.Button btnCandAgregar;
         private System.Windows.Forms.Button btnCandEliminar;
         private System.Windows.Forms.Button btnCandEditar;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Panel panelExperiencia;
-        private System.Windows.Forms.ComboBox cboCategoria;
+        private System.Windows.Forms.ComboBox cboExpCategoria;
         private System.Windows.Forms.Button btnExpCancelar;
         private System.Windows.Forms.Button btnExpGuardar;
         private System.Windows.Forms.Button btnExpAgregar;
         private System.Windows.Forms.Button btnExpEliminar;
         private System.Windows.Forms.Button btnExpEditar;
-        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.TextBox txtExpDescripcion;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
@@ -1318,8 +1326,8 @@ namespace TF_Mendez_Reclutamiento.ABM
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox txtFechaHasta;
-        private System.Windows.Forms.TextBox txtFechaDesde;
+        private System.Windows.Forms.TextBox txtExpFechaHasta;
+        private System.Windows.Forms.TextBox txtExpFechaDesde;
         private System.Windows.Forms.TextBox txtExpPuesto;
         private System.Windows.Forms.TextBox txtExpEmpresa;
         private System.Windows.Forms.TextBox txtExpCodigo;
@@ -1341,7 +1349,6 @@ namespace TF_Mendez_Reclutamiento.ABM
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.TextBox txtEduEstado;
         private System.Windows.Forms.TextBox txtEduFechaInicio;
         private System.Windows.Forms.TextBox txtEduDuracion;
         private System.Windows.Forms.TextBox txtEduCarrera;
@@ -1357,5 +1364,6 @@ namespace TF_Mendez_Reclutamiento.ABM
         private System.Windows.Forms.Button btnCandSiguiente;
         private System.Windows.Forms.Button btnExpSiguiente;
         private System.Windows.Forms.Button btnEduFinalizar;
+        private System.Windows.Forms.ComboBox cboEduEstado;
     }
 }

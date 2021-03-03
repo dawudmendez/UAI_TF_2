@@ -46,7 +46,7 @@ namespace TF_Mendez_Reclutamiento.ABM
         {
             dgvTecnologias.Rows.Clear();
 
-            List<Tecnologia> tecnologias = this.tecnologiaNegocio.Traer().ToList();
+            List<Tecnologia> tecnologias = this.tecnologiaNegocio.Traer();
 
             dgvTecnologias.ColumnCount = 3;
             dgvTecnologias.Columns[0].Name = "Código";

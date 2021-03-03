@@ -1,4 +1,5 @@
-﻿using AccesoDatos.Repositorios;
+﻿using AccesoDatos.Contexto;
+using AccesoDatos.Repositorios;
 using Entidad.Enums;
 using Entidad.Negocio;
 using Negocio.Helpers;
@@ -12,66 +13,61 @@ namespace Negocio.ABM
 {
     public class UsuarioNegocio
     {
-        private UsuarioRepo usuarioRepo = new UsuarioRepo();
 
-        public IEnumerable<Usuario> TraerPorPuesto(EPuesto Puesto)
+        public List<Usuario> TraerPorPuesto(EPuesto Puesto)
         {
-            return this.usuarioRepo.TraerPorPuesto(Puesto);
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                UsuarioRepo usuarioRepo = new UsuarioRepo(contexto);
+                return usuarioRepo.TraerPorPuesto(Puesto);
+            }
         }
 
-        public IEnumerable<Usuario> TraerTodo()
+        public List<Usuario> TraerTodo()
         {
-            return this.usuarioRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                UsuarioRepo usuarioRepo = new UsuarioRepo(contexto);
+                return usuarioRepo.TraerTodo();
+            }
         }
 
         public Usuario Traer(string Legajo)
         {
-            return this.usuarioRepo.Traer(new Usuario { Legajo = Legajo });
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                UsuarioRepo usuarioRepo = new UsuarioRepo(contexto);
+                return usuarioRepo.Traer(new Usuario { Legajo = Legajo });
+            }
         }
 
         public bool Agregar(Usuario Usuario)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.usuarioRepo.Insertar(Usuario);
+                UsuarioRepo usuarioRepo = new UsuarioRepo(contexto);
+                return usuarioRepo.Insertar(Usuario);
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
-
-            return true;
         }
 
         public bool Modificar(Usuario Usuario)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.usuarioRepo.Actualizar(Usuario);
+                UsuarioRepo usuarioRepo = new UsuarioRepo(contexto);
+                return usuarioRepo.Actualizar(Usuario);
             }
-            catch (Exception)
-            {
-                return false;
-            }
-            
-
-            return true;
         }
         
         public bool Eliminar(Usuario Usuario)
         {
-
             if (Usuario.Legajo == UserHelper.UsuarioSistema.Legajo)
                 throw new Exception("No se puede eliminar el usuario en uso");
 
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.usuarioRepo.Eliminar(Usuario);
-            }
-            catch (Exception)
-            {
-                return false;
+                UsuarioRepo usuarioRepo = new UsuarioRepo(contexto);
+                return usuarioRepo.Eliminar(Usuario);
             }
         }
 
@@ -80,16 +76,11 @@ namespace Negocio.ABM
             if (Actual != UserHelper.UsuarioSistema.Password)
                 return false;
 
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                return this.usuarioRepo.CambiarPassword(new Usuario { Legajo = UserHelper.UsuarioSistema.Legajo, Password = Nueva });
-            }
-            catch (Exception)
-            {
-
-                return false;
-            }
-            
+                UsuarioRepo usuarioRepo = new UsuarioRepo(contexto);
+                return usuarioRepo.CambiarPassword(new Usuario { Legajo = UserHelper.UsuarioSistema.Legajo, Password = Nueva });
+            }            
         }
 
     }

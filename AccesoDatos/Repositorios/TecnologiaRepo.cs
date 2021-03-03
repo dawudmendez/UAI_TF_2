@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using AccesoDatos.Contexto;
 using AccesoDatos.Enums;
 using Entidad.Enums;
 using Entidad.Negocio;
@@ -16,6 +17,11 @@ namespace AccesoDatos.Repositorios
         protected override string SPInsertar { get; set; } = "sp_tecnologia_insertar";
         protected override string SPEliminar { get; set; } = "sp_tecnologia_eliminar";
         private string SPTraerPorPerfil { get; set; } = "sp_tecnologia_traer_por_perfil";
+
+        public TecnologiaRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
 
         protected override SqlParameter[] PrepararParametros(EAccion Accion, Tecnologia Entidad, int Elemento = 0)
         {

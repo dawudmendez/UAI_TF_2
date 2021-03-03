@@ -39,7 +39,7 @@ namespace TF_Mendez_Reclutamiento.ABM
         {
             dgvUsuarios.Rows.Clear();
 
-            List<Usuario> usuarios = this.usuarioNegocio.TraerTodo().ToList();
+            List<Usuario> usuarios = this.usuarioNegocio.TraerTodo();
 
             dgvUsuarios.ColumnCount = 4;
             dgvUsuarios.Columns[0].Name = "Legajo";

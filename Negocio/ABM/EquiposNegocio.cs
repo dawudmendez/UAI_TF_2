@@ -5,64 +5,57 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidad.Negocio;
 using AccesoDatos.Repositorios;
+using AccesoDatos.Contexto;
 
 namespace Negocio.ABM
 {
     public class EquiposNegocio
     {
-        private EquipoRepo equipoRepo = new EquipoRepo();
-
-        public IEnumerable<Equipo> TraerTodo()
+        public List<Equipo> TraerTodo()
         {
-            return this.equipoRepo.TraerTodo();
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                EquipoRepo equipoRepo = new EquipoRepo(contexto);
+                return equipoRepo.TraerTodo();
+            }
         }
 
         public Equipo Traer(string Nombre)
         {
-            Equipo equipo = new Equipo();
-            equipo.Nombre = Nombre;
-            return this.equipoRepo.Traer(equipo);
+            using (SQLContexto contexto = new SQLContexto())
+            {
+                EquipoRepo equipoRepo = new EquipoRepo(contexto);
+
+                Equipo equipo = new Equipo();
+                equipo.Nombre = Nombre;
+                return equipoRepo.Traer(equipo);
+            }            
         }
 
         public bool Agregar(Equipo Equipo)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.equipoRepo.Insertar(Equipo);
+                EquipoRepo equipoRepo = new EquipoRepo(contexto);
+                return equipoRepo.Insertar(Equipo);
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
-
-            return true;
         }
 
         public bool Modificar(Equipo Equipo)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.equipoRepo.Actualizar(Equipo);
+                EquipoRepo equipoRepo = new EquipoRepo(contexto);
+                return equipoRepo.Actualizar(Equipo);
             }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public bool Eliminar(string Nombre)
         {
-            try
+            using (SQLContexto contexto = new SQLContexto())
             {
-                this.equipoRepo.Eliminar(new Equipo { Nombre = Nombre });
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
+                EquipoRepo equipoRepo = new EquipoRepo(contexto);
+                return equipoRepo.Eliminar(new Equipo { Nombre = Nombre });
             }
         }
     }

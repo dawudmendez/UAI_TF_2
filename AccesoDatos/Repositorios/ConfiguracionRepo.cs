@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using AccesoDatos.Contexto;
 using AccesoDatos.Enums;
 using Entidad.Negocio;
 
@@ -9,7 +10,6 @@ namespace AccesoDatos.Repositorios
 {
     public class ConfiguracionRepo : Repositorio<Configuracion>
     {
-        private OficinaRepo OficinaRepo = new OficinaRepo();
 
         //Configuración sólo puede traer y actualizar
         protected override string SPTraerTodo { get; set; } = "sp_configuracion_traer";
@@ -17,6 +17,11 @@ namespace AccesoDatos.Repositorios
         protected override string SPTraerUno { get; set; }        
         protected override string SPInsertar { get; set; }
         protected override string SPEliminar { get; set; }
+
+        public ConfiguracionRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
 
         protected override SqlParameter[] PrepararParametros(EAccion Accion, Configuracion Entidad, int Elemento = 0)
         {
@@ -55,9 +60,7 @@ namespace AccesoDatos.Repositorios
 
             conf.Cuit = Row["cuit"].ToString();
             conf.RazonSocial = Row["razonsocial"].ToString();
-
-            this.OficinaRepo = new OficinaRepo();
-            conf.OficinaPrincipal = this.OficinaRepo.Traer(new Oficina { Nombre = Row["nombre_oficinaprincipal"].ToString() });
+            conf.OficinaPrincipal = new Oficina { Nombre = Row["nombre_oficinaprincipal"].ToString() };
 
             return conf;
         }

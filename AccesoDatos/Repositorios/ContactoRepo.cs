@@ -20,6 +20,11 @@ namespace AccesoDatos.Repositorios
         protected override string SPInsertar { get ; set ; } = "sp_contacto_insertar";
         protected override string SPEliminar { get ; set ; } = "sp_contacto_eliminar";
 
+        public ContactoRepo(IDBContexto contexto) : base(contexto)
+        {
+
+        }
+
         protected override SqlParameter[] PrepararParametros(EAccion Accion, Contacto Entidad, int Elemento = 0)
         {
             SqlParameter Codigo = new SqlParameter();
@@ -67,7 +72,7 @@ namespace AccesoDatos.Repositorios
             cont.Codigo = new Guid(Row["codigo"].ToString());
             cont.Email = Row["email"].ToString();
             cont.Telefono = Row["telefono"].ToString();
-            cont.SitioWeb = new Uri(Row["sitioweb"]?.ToString());
+            cont.SitioWeb = String.IsNullOrEmpty(Row["sitioweb"].ToString()) ? null : new Uri(Row["sitioweb"]?.ToString());
 
             return cont;
         }
